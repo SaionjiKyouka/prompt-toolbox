@@ -1,0 +1,32 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor
+.vscode/
+.idea/
+*.sublime-*
+
+# Node / package managers (for any future tooling)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build / dist
+dist/
+build/
+*.log
+
+# Temporary
+tmp/
+temp/
+.cache/
+
+# Local env / secrets (never commit API keys)
+.env
+.env.local
+*.key
+secrets/

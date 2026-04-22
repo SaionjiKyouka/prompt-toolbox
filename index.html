@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提示词工具箱 · Prompt Toolbox</title>
+
+<!-- Stylesheets · 按工具拆分 -->
+<link rel="stylesheet" href="styles/hub.css">
+<link rel="stylesheet" href="styles/tool-1.css">
+<link rel="stylesheet" href="styles/tool-2.css">
+<link rel="stylesheet" href="styles/tool-3.css">
+<link rel="stylesheet" href="styles/tool-4.css">
+</head>
+<body>
+
+<!-- ============================================
+     HUB / HOME SCREEN
+     ============================================ -->
+<div class="hub-screen" id="hubScreen">
+  <div class="hub-header">
+    <div class="hub-logo"><span>◈</span></div>
+    <div class="hub-badge">Prompt Engineering Studio</div>
+    <h1 class="hub-title">提示词工具箱</h1>
+    <p class="hub-subtitle">PROMPT · TOOLBOX · v1.0</p>
+    <p class="hub-tagline">— 精心调校的AI图像提示词生成器合集，为每种风格量身定制 —</p>
+  </div>
+
+  <div class="hub-container">
+    <div class="tools-section-label">Available Tools · 可用工具</div>
+    <div class="tools-grid" id="toolsGrid">
+      <!-- Tools injected by hub.js -->
+    </div>
+  </div>
+
+  <div class="hub-footer">
+    ◈ Prompt Toolbox · Crafted with care · 2026
+  </div>
+</div>
+
+<!-- TOOL 1 · Cross-section Infographic -->
+<!-- ============================================
+     TOOL 1 — Cross-section Infographic
+     ============================================ -->
+<div class="tool-screen tool-screen-1" id="tool1">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="header-badge">Prompt Template Engine</div>
+    <h1>剖面图提示词生成器</h1>
+    <p class="subtitle">Cross-Section Infographic Prompt Generator</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">// Input Configuration</div>
+      <div class="input-row">
+        <input class="topic-input" id="t1TopicInput" type="text" placeholder="输入主题，例如：一棵树、一台相机、人类眼球…" />
+        <button class="generate-btn" id="t1GenBtn" onclick="generateTool1()">生 成 提 示 词</button>
+      </div>
+      <div class="options-grid">
+        <div class="option-group">
+          <label>// 可视化风格</label>
+          <select id="t1StyleSelect">
+            <option value="encyclopedia">🖼️ 博物志百科（古籍工笔）</option>
+            <option value="technical">⚡ 赛博技术图（科技爆炸）</option>
+            <option value="magazine">📰 WIRED杂志（现代编辑）</option>
+            <option value="organic">🌿 自然科学插画（DK风格）</option>
+            <option value="vintage">⚙️ 蒸汽朋克蓝图（达芬奇）</option>
+            <option value="cinematic">🎬 国家地理暗调（电影质感）</option>
+            <option value="minimal">◻️ 极简编辑（瑞士设计）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>// 展示角度</label>
+          <select id="t1ViewSelect">
+            <option value="exploded">💥 爆炸分解图（手机/机械）</option>
+            <option value="isometric">📐 等轴测剖面（45°立体）</option>
+            <option value="cross">✂️ 横截面剖切（生物/建筑）</option>
+            <option value="vertical">📊 垂直分层（地质/建筑）</option>
+            <option value="timeline">⏱️ 时间过程图（流程/演化）</option>
+          </select>
+        </div>
+      </div>
+      <div class="presets">
+        <span style="font-size:11px;color:var(--t1-muted);align-self:center;font-family:'Space Mono',monospace;">快速示例：</span>
+        <button class="preset-chip" onclick="setT1Topic('一棵橡树')">🌳 橡树</button>
+        <button class="preset-chip" onclick="setT1Topic('35mm胶片相机')">📷 胶片相机</button>
+        <button class="preset-chip" onclick="setT1Topic('人类眼球')">👁 眼球</button>
+        <button class="preset-chip" onclick="setT1Topic('一张照片的形成过程')">🖼 照片成像</button>
+        <button class="preset-chip" onclick="setT1Topic('智能手机')">📱 智能手机</button>
+        <button class="preset-chip" onclick="setT1Topic('咖啡豆到一杯咖啡')">☕ 咖啡旅程</button>
+        <button class="preset-chip" onclick="setT1Topic('珊瑚礁生态系统')">🪸 珊瑚礁</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t1Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">GENERATING PROMPT</div>
+      <div class="loading-steps">
+        <div class="step" id="t1s1">▸ 分析主题结构…</div>
+        <div class="step" id="t1s2">▸ 生成层级系统…</div>
+        <div class="step" id="t1s3">▸ 匹配视觉风格…</div>
+        <div class="step" id="t1s4">▸ 输出提示词…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t1Output">
+      <div class="output-header">
+        <span class="output-title" id="t1OutputLabel">// OUTPUT: PROMPT READY</span>
+        <button class="copy-btn" onclick="copyT1()">COPY ALL</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT1Tab(0)">完整提示词</div>
+        <div class="tab" onclick="switchT1Tab(1)">中文版本</div>
+        <div class="tab" onclick="switchT1Tab(2)">信息板块</div>
+        <div class="tab" onclick="switchT1Tab(3)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t1tab0">
+        <div class="prompt-block">
+          <div class="block-label">// English Prompt</div>
+          <div class="prompt-text" id="t1EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t1tab1">
+        <div class="prompt-block">
+          <div class="block-label">// 中文提示词</div>
+          <div class="prompt-text" id="t1ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t1tab2">
+        <div class="block-label" style="margin-bottom:12px">// 信息板块 / Information Modules</div>
+        <div class="layer-viz" id="t1LayerViz"></div>
+      </div>
+      <div class="tab-content" id="t1tab3">
+        <div class="prompt-block">
+          <div class="block-label">// 使用建议</div>
+          <div class="prompt-text" id="t1UsageGuide">—</div>
+        </div>
+        <div class="usage-note" id="t1UsageNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL 2 · Cosplay Poster -->
+<!-- ============================================
+     TOOL 2 — Cosplay Poster
+     ============================================ -->
+<div class="tool-screen tool-screen-2" id="tool2">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="ornament">✦ ✦ ✦</div>
+    <div class="header-badge">Cosplay × Anime Poster Engine</div>
+    <h1>真人COS × 动漫海报<br>提示词铸造坊</h1>
+    <p class="subtitle">HYBRID · LIVE-ACTION × ILLUSTRATION</p>
+    <p class="tagline">— "Main subject in realistic cosplay, secondary in 2D illustration" —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">Input · 输入参数</div>
+      <div class="input-row">
+        <input class="character-input" id="t2CharInput" type="text" placeholder="输入动漫角色名，例如：雅儿贝德、祢豆子、雷电将军…" />
+        <button class="generate-btn" id="t2GenBtn" onclick="generateTool2()">Generate</button>
+      </div>
+      <div class="options-grid">
+        <div class="option-group">
+          <label>· Mood / 氛围风格</label>
+          <select id="t2MoodSelect">
+            <option value="baroque">🕯️ Baroque Dark Fantasy（巴洛克暗黑）</option>
+            <option value="divine">✨ Divine Ethereal（神性空灵）</option>
+            <option value="gothic">🖤 Victorian Gothic（维多利亚哥特）</option>
+            <option value="oriental">🌸 Oriental Elegance（东方古典）</option>
+            <option value="cyberpunk">⚡ Cyberpunk Neon（赛博霓虹）</option>
+            <option value="cinematic">🎬 Hollywood Cinematic（好莱坞大片）</option>
+            <option value="vintage">📜 Vintage Film Poster（复古电影）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>· Title Text / 标题文字</label>
+          <input id="t2TitleInput" type="text" placeholder="例如：OVERLORD（可留空）" />
+        </div>
+      </div>
+      <div class="options-grid">
+        <div class="option-group">
+          <label>· Composition / 构图</label>
+          <select id="t2CompSelect">
+            <option value="portrait">📱 Vertical Portrait（竖版肖像）</option>
+            <option value="halfbody">👤 Half-body Close-up（半身特写）</option>
+            <option value="fullbody">🧍 Full-body Epic（全身史诗）</option>
+            <option value="dualshot">👥 Dual Shot（双人构图）</option>
+            <option value="bust">🎭 Bust Portrait（胸像）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>· Background / 背景类型</label>
+          <select id="t2BgSelect">
+            <option value="charparty">🎨 Character Party（角色群像）</option>
+            <option value="landscape">🏰 2D Landscape（场景插画）</option>
+            <option value="symbolic">⚜️ Symbolic Pattern（徽章图腾）</option>
+            <option value="minimal">◻️ Minimal Solid（极简纯色）</option>
+            <option value="mixed">🌀 Mixed Scene（混合场景）</option>
+          </select>
+        </div>
+      </div>
+      <div class="presets">
+        <span class="presets-label">QUICK · </span>
+        <button class="preset-chip" onclick="setT2Char('雅儿贝德','OVERLORD')">雅儿贝德</button>
+        <button class="preset-chip" onclick="setT2Char('祢豆子','鬼灭之刃')">祢豆子</button>
+        <button class="preset-chip" onclick="setT2Char('五条悟','JUJUTSU KAISEN')">五条悟</button>
+        <button class="preset-chip" onclick="setT2Char('雷电将军','GENSHIN IMPACT')">雷电将军</button>
+        <button class="preset-chip" onclick="setT2Char('三笠','ATTACK ON TITAN')">三笠</button>
+        <button class="preset-chip" onclick="setT2Char('初音未来','HATSUNE MIKU')">初音未来</button>
+        <button class="preset-chip" onclick="setT2Char('玛奇玛','CHAINSAW MAN')">玛奇玛</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t2Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">FORGING PROMPT</div>
+      <div class="loading-steps">
+        <div class="step" id="t2s1">✦ Analyzing character lore...</div>
+        <div class="step" id="t2s2">✦ Composing spatial layers...</div>
+        <div class="step" id="t2s3">✦ Applying cinematic lighting...</div>
+        <div class="step" id="t2s4">✦ Finalizing typography...</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t2Output">
+      <div class="output-header">
+        <span class="output-title" id="t2OutputLabel">✦ PROMPT READY</span>
+        <button class="copy-btn" onclick="copyT2()">Copy</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT2Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT2Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT2Tab(2)">构成要素</div>
+        <div class="tab" onclick="switchT2Tab(3)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t2tab0">
+        <div class="prompt-block">
+          <div class="block-label">◆ English Prompt</div>
+          <div class="prompt-text prompt-text-mono" id="t2EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t2tab1">
+        <div class="prompt-block">
+          <div class="block-label">◆ 中文提示词</div>
+          <div class="prompt-text prompt-text-mono" id="t2ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t2tab2">
+        <div class="block-label" style="margin-bottom:14px">◆ 画面构成要素</div>
+        <div id="t2ElementsViz"></div>
+      </div>
+      <div class="tab-content" id="t2tab3">
+        <div class="prompt-block">
+          <div class="block-label">◆ Usage Guide</div>
+          <div class="prompt-text" id="t2UsageGuide" style="font-style:normal">—</div>
+        </div>
+        <div class="info-note" id="t2PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL 3 · Cinematic Product Manifesto -->
+<!-- ============================================
+     TOOL 3 — Cinematic Product Manifesto
+     ============================================ -->
+<div class="tool-screen tool-screen-3" id="tool3">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="header-top">
+      <div class="header-logo">
+        <div class="header-logo-mark"></div>
+        <span>MANIFESTO</span>
+      </div>
+      <div class="header-top-right">BUILT FOR THE<br>AI NATIVE GENERATION</div>
+    </div>
+    <h1>电影化产品海报<br><span class="highlight">MANIFESTO</span> 生成器</h1>
+    <p class="subtitle-en">Cinematic Product Poster · Manifesto Style</p>
+    <p class="tagline">— SAY IT. DONE. —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">▸ Product Configuration</div>
+
+      <div class="input-row">
+        <input class="product-input" id="t3ProductInput" type="text" placeholder="产品名称，例如：NoteX、DreamAI、Nova Pro…" />
+        <button class="generate-btn" id="t3GenBtn" onclick="generateTool3()">Manifest</button>
+      </div>
+
+      <input class="slogan-input" id="t3SloganInput" type="text" placeholder="产品宣言/Slogan（可留空自动生成，例如：第一个有灵魂的AI操作系统）" />
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>Product Type · 产品类型</label>
+          <select id="t3TypeSelect">
+            <option value="ai">🤖 AI 应用 / OS</option>
+            <option value="hardware">📱 硬件产品</option>
+            <option value="saas">💼 SaaS / 工具</option>
+            <option value="luxury">💎 奢侈品 / 精品</option>
+            <option value="lifestyle">🌿 生活方式品牌</option>
+            <option value="tech">⚡ 科技消费品</option>
+            <option value="startup">🚀 初创品牌</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>Cinematic Reference · 电影参考</label>
+          <select id="t3MovieSelect">
+            <option value="2001">🚀 2001太空漫游（Kubrick对称极简）</option>
+            <option value="blade2049">🌃 银翼杀手2049（赛博霓虹）</option>
+            <option value="her">💻 Her（暖橙人文孤独）</option>
+            <option value="interstellar">🌌 星际穿越（宇宙宏大）</option>
+            <option value="dune">🏜️ 沙丘（史诗荒凉）</option>
+            <option value="anime">🌸 新海诚动漫（梦幻星空）</option>
+            <option value="exmachina">🤖 机械姬（冷白极简）</option>
+            <option value="arrival">🛸 降临（神秘氛围）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>Color Lock · 色温锁定</label>
+          <select id="t3ColorSelect">
+            <option value="hermes">🍊 爱马仕橙 + 深黑（图1/2/3）</option>
+            <option value="cyberorange">🔥 血橙红 + 深暗（图2）</option>
+            <option value="warmsunset">🌅 夕阳暖棕 + 金橙（图3）</option>
+            <option value="purplestar">💜 紫粉 + 深靛蓝（图4）</option>
+            <option value="iceblue">🧊 冰蓝 + 银灰</option>
+            <option value="monogreen">🌿 橄榄绿 + 米白</option>
+            <option value="monored">❤️ 酒红 + 黑</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>Scene · 叙事场景</label>
+          <select id="t3SceneSelect">
+            <option value="corridor">🚪 未来长廊（对称透视）</option>
+            <option value="rooftop">🌆 天台背影（城市夜景）</option>
+            <option value="study">📚 书房伏案（暖光静谧）</option>
+            <option value="hologram">✨ 全息投影（巨大女性面孔）</option>
+            <option value="space">🌌 太空舱窗（地球远景）</option>
+            <option value="portrait">👤 人物肖像（回眸侧面）</option>
+            <option value="abstract">🎨 抽象粒子（无具象人物）</option>
+            <option value="city">🏙️ 赛博城市（雨夜霓虹）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT3('Nexus OS','第一个有灵魂的AI操作系统','ai','2001','hermes','corridor')">AI 操作系统</button>
+        <button class="preset-chip" onclick="setT3('NoteX','为深度思考者而生','saas','her','warmsunset','study')">深度笔记</button>
+        <button class="preset-chip" onclick="setT3('DreamAI','让想象成为现实','ai','anime','purplestar','hologram')">创意AI</button>
+        <button class="preset-chip" onclick="setT3('Vessel','回归本质的日常器物','lifestyle','exmachina','monogreen','abstract')">生活品牌</button>
+        <button class="preset-chip" onclick="setT3('Nova Pro','重新定义智能硬件','hardware','blade2049','cyberorange','city')">硬件旗舰</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t3Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">CRAFTING MANIFESTO</div>
+      <div class="loading-steps">
+        <div class="step" id="t3s1">▸ 锁定电影参考美学…</div>
+        <div class="step" id="t3s2">▸ 构建叙事主视觉…</div>
+        <div class="step" id="t3s3">▸ 撰写品牌宣言文案…</div>
+        <div class="step" id="t3s4">▸ 生成完整排版…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t3Output">
+      <div class="output-header">
+        <span class="output-title" id="t3OutputLabel">▸ MANIFESTO READY</span>
+        <button class="copy-btn" onclick="copyT3()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT3Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT3Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT3Tab(2)">品牌文案</div>
+        <div class="tab" onclick="switchT3Tab(3)">画面拆解</div>
+        <div class="tab" onclick="switchT3Tab(4)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t3tab0">
+        <div class="prompt-block">
+          <div class="block-label">▸ English Prompt · Midjourney / Flux / SD</div>
+          <div class="prompt-text" id="t3EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t3tab1">
+        <div class="prompt-block">
+          <div class="block-label">▸ 中文提示词 · 可灵 / 即梦</div>
+          <div class="prompt-text" id="t3ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t3tab2">
+        <div class="block-label" style="margin-bottom:14px">▸ 可直接使用的品牌文案</div>
+        <div id="t3CopyDeck"></div>
+      </div>
+      <div class="tab-content" id="t3tab3">
+        <div class="block-label" style="margin-bottom:14px">▸ 画面构成要素</div>
+        <div id="t3ElementsViz"></div>
+      </div>
+      <div class="tab-content" id="t3tab4">
+        <div class="prompt-block">
+          <div class="block-label">▸ Usage Guide</div>
+          <div class="prompt-text" id="t3UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t3PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL 4 · Photography Prompt -->
+<!-- ============================================
+     TOOL 4 — Photography Prompt
+     ============================================ -->
+<div class="tool-screen tool-screen-4" id="tool4">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="film-strip">
+      <div class="film-hole"></div>
+      <div class="film-hole"></div>
+      <div class="film-hole"></div>
+      <div class="film-hole"></div>
+      <div class="film-hole"></div>
+    </div>
+    <div class="header-badge">Photography Prompt Engine</div>
+    <h1>真实摄影提示词<br><span class="accent">Film × Editorial</span></h1>
+    <p class="subtitle">Analog Photography · Cinematic Portrait</p>
+    <p class="tagline">— Shot on real film, not rendered —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">Subject · 拍摄对象描述</div>
+
+      <textarea class="subject-textarea" id="t4Subject" placeholder="描述你要拍的人物/场景。越具体越好——例如：一个穿象牙白婚纱的女子，站在野花草甸中回眸微笑，黄昏逆光，长发飘散；或简短地：咖啡馆里阅读的女孩，秋日下午。"></textarea>
+
+      <div class="divider-label">── TECHNICAL SPECS ──</div>
+
+      <div class="options-grid-3">
+        <div class="option-group">
+          <label>◉ Film Stock · 胶片型号</label>
+          <select id="t4FilmSelect">
+            <option value="portra400">Kodak Portra 400（婚礼/人像）</option>
+            <option value="portra800">Kodak Portra 800（暗光人像）</option>
+            <option value="gold200">Kodak Gold 200（日常暖调）</option>
+            <option value="ektar100">Kodak Ektar 100（风光艳丽）</option>
+            <option value="pro400h">Fuji Pro 400H（清新胶调）</option>
+            <option value="superia400">Fuji Superia 400（日系清新）</option>
+            <option value="velvia50">Fuji Velvia 50（风光高饱和）</option>
+            <option value="cinestill800">CineStill 800T（夜景电影）</option>
+            <option value="trix400">Kodak Tri-X 400（黑白经典）</option>
+            <option value="hp5">Ilford HP5 Plus（黑白纪实）</option>
+            <option value="digital">Digital Mirrorless（数字质感）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◉ Camera · 相机机身</label>
+          <select id="t4CameraSelect">
+            <option value="contax">Contax T2/T3（日系扫街）</option>
+            <option value="leicam6">Leica M6（旁轴经典）</option>
+            <option value="rolleiflex">Rolleiflex（双反方画幅）</option>
+            <option value="pentax67">Pentax 67（中画幅人像）</option>
+            <option value="hasselblad">Hasselblad 500C/M（时尚大片）</option>
+            <option value="mamiya7">Mamiya 7（中画幅街拍）</option>
+            <option value="nikonfm2">Nikon FM2（经典135）</option>
+            <option value="canonae1">Canon AE-1（复古135）</option>
+            <option value="disposable">一次性相机（Lomo粗颗粒）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◉ Lens · 镜头</label>
+          <select id="t4LensSelect">
+            <option value="35f14">35mm f/1.4（纪实人文）</option>
+            <option value="50f12">50mm f/1.2（经典标焦）</option>
+            <option value="85f14">85mm f/1.4（人像王者）</option>
+            <option value="28f2">28mm f/2（广角环境）</option>
+            <option value="135f2">135mm f/2（远距压缩）</option>
+            <option value="80f28">80mm f/2.8（中画幅标头）</option>
+            <option value="24f14">24mm f/1.4（广角抓拍）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid-3">
+        <div class="option-group">
+          <label>◉ Lighting · 光线</label>
+          <select id="t4LightSelect">
+            <option value="goldenhour">黄金时刻 Golden Hour（逆光暖金）</option>
+            <option value="bluehour">蓝调时刻 Blue Hour（黄昏冷调）</option>
+            <option value="window">窗光 Window Light（柔和侧光）</option>
+            <option value="overcast">阴天 Overcast（柔光均匀）</option>
+            <option value="harsh">正午硬光 Harsh Noon（强对比）</option>
+            <option value="neon">霓虹夜景 Neon Night（色彩光斑）</option>
+            <option value="candle">烛光 Candle Light（温暖朦胧）</option>
+            <option value="flash">直闪 Direct Flash（时尚感）</option>
+            <option value="studio">棚拍柔光 Studio Softbox</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◉ Mood · 情绪氛围</label>
+          <select id="t4MoodSelect">
+            <option value="dreamy">梦幻柔光 Dreamy & Ethereal</option>
+            <option value="melancholy">忧郁深沉 Melancholic</option>
+            <option value="joyful">灿烂明媚 Joyful & Bright</option>
+            <option value="intimate">亲密私密 Intimate & Warm</option>
+            <option value="editorial">时尚大片 Editorial Fashion</option>
+            <option value="documentary">纪实真实 Documentary</option>
+            <option value="cinematic">电影质感 Cinematic</option>
+            <option value="nostalgic">怀旧复古 Nostalgic Vintage</option>
+            <option value="serene">宁静禅意 Serene & Zen</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◉ Composition · 构图</label>
+          <select id="t4CompSelect">
+            <option value="halfbody">半身像 Half-body</option>
+            <option value="fullbody">全身像 Full-body</option>
+            <option value="closeup">面部特写 Close-up</option>
+            <option value="environmental">环境人像 Environmental</option>
+            <option value="candid">抓拍 Candid Moment</option>
+            <option value="overshoulder">过肩 Over-shoulder</option>
+            <option value="lowangle">低角度 Low Angle</option>
+            <option value="symmetrical">对称构图 Symmetrical</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divider-label">── STYLE REFERENCE ──</div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◉ Photographer Style · 摄影师风格</label>
+          <select id="t4PhotographerSelect">
+            <option value="">不指定（自由发挥）</option>
+            <option value="hamaya">滨田英明 Hideaki Hamaya（日系家庭）</option>
+            <option value="kawauchi">川内伦子 Rinko Kawauchi（梦幻日系）</option>
+            <option value="leibovitz">Annie Leibovitz（戏剧人像）</option>
+            <option value="mccurry">Steve McCurry（国家地理纪实）</option>
+            <option value="sorrenti">Mario Sorrenti（时尚胶片）</option>
+            <option value="leiter">Saul Leiter（街头诗意）</option>
+            <option value="mikko">Mikko Lagerstedt（北欧极光）</option>
+            <option value="miike">三池崇史式 Yohji Yamamoto（黑白时尚）</option>
+            <option value="erwitt">Elliott Erwitt（幽默纪实）</option>
+            <option value="pingmei">平野紗季子式 Japanese wedding</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◉ Grain · 颗粒感</label>
+          <select id="t4GrainSelect">
+            <option value="heavy">重颗粒（ISO 800+ push）</option>
+            <option value="medium">中等颗粒（ISO 400 自然）</option>
+            <option value="fine">细颗粒（ISO 100-200）</option>
+            <option value="clean">无颗粒（数字干净）</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="generate-btn" id="t4GenBtn" onclick="generateTool4()">
+        ◉ DEVELOP THE SHOT · 冲洗胶片
+      </button>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT4Preset('wedding')">💍 黄昏婚纱</button>
+        <button class="preset-chip" onclick="setT4Preset('cafe')">☕ 咖啡馆人像</button>
+        <button class="preset-chip" onclick="setT4Preset('street')">🌃 街头扫街</button>
+        <button class="preset-chip" onclick="setT4Preset('family')">👨‍👩‍👧 家庭日常</button>
+        <button class="preset-chip" onclick="setT4Preset('fashion')">👗 时尚大片</button>
+        <button class="preset-chip" onclick="setT4Preset('travel')">🌊 旅行纪实</button>
+        <button class="preset-chip" onclick="setT4Preset('bnw')">⚫ 黑白肖像</button>
+        <button class="preset-chip" onclick="setT4Preset('neon')">🏮 夜市霓虹</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t4Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">DEVELOPING FILM</div>
+      <div class="loading-steps">
+        <div class="step" id="t4s1">◉ 装载胶卷与机身…</div>
+        <div class="step" id="t4s2">◉ 测光与构图…</div>
+        <div class="step" id="t4s3">◉ 按下快门…</div>
+        <div class="step" id="t4s4">◉ 暗房冲洗…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t4Output">
+      <div class="output-header">
+        <span class="output-title" id="t4OutputLabel">◉ FRAME READY</span>
+        <button class="copy-btn" onclick="copyT4()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT4Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT4Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT4Tab(2)">技术规格</div>
+        <div class="tab" onclick="switchT4Tab(3)">光影拆解</div>
+        <div class="tab" onclick="switchT4Tab(4)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t4tab0">
+        <div class="prompt-block">
+          <div class="block-label">◉ English Prompt · Midjourney / Flux / SD</div>
+          <div class="prompt-text" id="t4EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t4tab1">
+        <div class="prompt-block">
+          <div class="block-label">◉ 中文提示词</div>
+          <div class="prompt-text" id="t4ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t4tab2">
+        <div class="block-label" style="margin-bottom:14px">◉ Technical Specifications · 拍摄技术规格</div>
+        <div class="spec-sheet" id="t4SpecSheet"></div>
+      </div>
+      <div class="tab-content" id="t4tab3">
+        <div class="block-label" style="margin-bottom:14px">◉ Lighting Breakdown · 光影效果拆解</div>
+        <div id="t4LightingViz"></div>
+      </div>
+      <div class="tab-content" id="t4tab4">
+        <div class="prompt-block">
+          <div class="block-label">◉ Usage Guide</div>
+          <div class="prompt-text" id="t4UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t4PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tool modules · 按需加载 -->
+<script src="tools/hub.js"></script>
+<script src="tools/tool-1-crosssection.js"></script>
+<script src="tools/tool-2-cosplay.js"></script>
+<script src="tools/tool-3-manifesto.js"></script>
+<script src="tools/tool-4-photography.js"></script>
+</body>
+</html>
