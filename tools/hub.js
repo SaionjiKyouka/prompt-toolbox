@@ -57,6 +57,17 @@ const TOOLS = [
     tags: ['城市文化', '中国风', '艺术海报'],
     accent: '#d4351c',
     status: 'active'
+  },
+  {
+    id: 'tool6',
+    number: '06',
+    icon: '🌕',
+    title: '仙侠角色海报',
+    en: 'Xianxia Character Poster',
+    desc: '生成月光仙侠角色海报——以巨型符文曼陀罗为背景，飘逸仙衣+繁复冠冕+星辉丝带为标志。10 种人物气质 × 12 种动作（奏乐/御剑/打坐/飞天等）× 8 种曼陀罗背景。',
+    tags: ['仙侠', '角色肖像', '月光氛围'],
+    accent: '#d8e4ff',
+    status: 'active'
   }
 ];
 

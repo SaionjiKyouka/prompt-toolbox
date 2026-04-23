@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="styles/tool-3.css">
 <link rel="stylesheet" href="styles/tool-4.css">
 <link rel="stylesheet" href="styles/tool-5.css">
+<link rel="stylesheet" href="styles/tool-6.css">
 </head>
 <body>
 
@@ -849,6 +850,210 @@
   </div>
 </div>
 
+<!-- TOOL 6 · Xianxia Character Poster -->
+<div class="tool-screen tool-screen-6" id="tool6">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="moon-logo"></div>
+    <div class="header-badge">Moonlit Xianxia Character Poster</div>
+    <h1>仙侠<span class="accent">角色</span>海报<br>提示词生成器</h1>
+    <p class="subtitle">Xianxia Character · 月光曼陀罗</p>
+    <p class="tagline">— 月下修行，一念成仙 —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">Character Configuration · 角色配置</div>
+
+      <div class="input-row">
+        <input class="character-input" id="t6NameInput" type="text" placeholder="角色名号（可选，如：青衫客、月夕、剑痴…）" />
+        <button class="generate-btn" id="t6GenBtn" onclick="generateTool6()">召 · 唤</button>
+      </div>
+
+      <div class="optional-inputs">
+        <input id="t6TitleInput" type="text" placeholder="作品副标题（可选，如：踏歌长啸 / 星剑如梦）" />
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>人物气质 · Character</label>
+          <select id="t6CharacterSelect">
+            <option value="xianjun">🧙 仙君（月华皎皎）</option>
+            <option value="jianxian">⚔️ 剑仙（冷峻凌厉）</option>
+            <option value="mozun">💀 魔尊（妖艳诡谲）</option>
+            <option value="fozi">🙏 佛子（慈悲庄严）</option>
+            <option value="yixian">🌿 医仙（温润柔和）</option>
+            <option value="qinMo">🎵 琴魔（孤傲忧郁）</option>
+            <option value="huyao">🦊 狐妖（妩媚诱惑）</option>
+            <option value="xianzi">👸 仙子（天姿绝色）</option>
+            <option value="guimei">👻 鬼魅（凄美幽怨）</option>
+            <option value="neutral">🌙 中性修士（雌雄莫辨）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>叙事动作 · Action</label>
+          <select id="t6ActionSelect">
+            <option value="playMusic">🎵 奏乐（笛/琴/箫）</option>
+            <option value="swordFlight">⚔️ 御剑凌空</option>
+            <option value="meditate">🧘 莲台打坐</option>
+            <option value="flyAscend">🕊️ 飞天翱翔</option>
+            <option value="swordDraw">🗡️ 执剑起势</option>
+            <option value="holdFlower">🌸 执花凝眸</option>
+            <option value="castSpell">✨ 施法结印</option>
+            <option value="recitSutra">📿 诵经祈福</option>
+            <option value="rideBeast">🐉 驭兽同行</option>
+            <option value="standPose">💫 静立独望</option>
+            <option value="bloodOath">🩸 血月立誓</option>
+            <option value="floatingPose">🌌 悬浮打坐</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>曼陀罗背景 · Mandala</label>
+          <select id="t6MandalaSelect">
+            <option value="fullMoon">🌕 满月法阵（经典）</option>
+            <option value="bloodMoon">🩸 血月诡阵</option>
+            <option value="bagua">☯️ 八卦阵</option>
+            <option value="sanskritWheel">🕉️ 梵文咒轮</option>
+            <option value="starMap">✨ 星座图</option>
+            <option value="taichi">⚫ 太极图</option>
+            <option value="lotusArray">🪷 莲花法阵</option>
+            <option value="voidVortex">🌀 虚空漩涡</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>场景环境 · Scene</label>
+          <select id="t6SceneSelect">
+            <option value="bambooForest">🎋 月夜竹林</option>
+            <option value="cloudSea">☁️ 云海仙境</option>
+            <option value="snowMountain">❄️ 雪山之巅</option>
+            <option value="palace">🏯 仙宫古殿</option>
+            <option value="abyss">🔥 魔渊深穴</option>
+            <option value="lotusPond">🪷 莲池月影</option>
+            <option value="starryField">🌌 星空虚无</option>
+            <option value="plumGarden">🌺 梅花古园</option>
+            <option value="templeRuins">🛕 古刹废墟</option>
+            <option value="cherryBlossom">🌸 樱落花林</option>
+            <option value="wintersea">❄️ 极光冰海</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>能量流形 · Energy</label>
+          <select id="t6EnergySelect">
+            <option value="starRibbon">💫 星辉丝带（经典）</option>
+            <option value="swordQi">⚔️ 剑气如虹</option>
+            <option value="bloodAura">🩸 血煞缠绕</option>
+            <option value="buddhaLight">🙏 金色佛光</option>
+            <option value="lightning">⚡ 雷霆之力</option>
+            <option value="petalFlow">🌸 花瓣灵力</option>
+            <option value="iceShards">❄️ 冰晶碎片</option>
+            <option value="mistClouds">🌫️ 仙气云雾</option>
+            <option value="starFall">🌠 陨星坠落</option>
+            <option value="inkWash">🖋 水墨流光</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>色调 · Tone</label>
+          <select id="t6ToneSelect">
+            <option value="moonCyan">🌙 月白青蓝（推荐）</option>
+            <option value="bloodGold">🔴 赤血金</option>
+            <option value="inkGold">⚫ 墨金</option>
+            <option value="jadeGreen">🟢 青碧</option>
+            <option value="snowSilver">⚪ 雪白银</option>
+            <option value="twilightPurple">🟣 暮色紫</option>
+            <option value="autumnRed">🍁 秋枫红</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group" style="grid-column: 1 / -1;">
+          <label>题字风格 · Typography</label>
+          <select id="t6TextSelect">
+            <option value="fourChar">📜 四字毛笔+红印（经典）</option>
+            <option value="poemLine">📖 古诗句竖排+印章</option>
+            <option value="titleSeal">🔴 单字大标题+朱印</option>
+            <option value="schoolSigil">⚔️ 门派徽记</option>
+            <option value="noText">◻️ 无题字（纯视觉）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT6Preset('xianjun','playMusic','fullMoon','bambooForest','starRibbon','moonCyan')">竹林笛君</button>
+        <button class="preset-chip" onclick="setT6Preset('jianxian','swordFlight','fullMoon','cloudSea','swordQi','snowSilver')">御剑凌空</button>
+        <button class="preset-chip" onclick="setT6Preset('fozi','meditate','lotusArray','lotusPond','buddhaLight','moonCyan')">莲台佛子</button>
+        <button class="preset-chip" onclick="setT6Preset('mozun','swordDraw','bloodMoon','abyss','bloodAura','bloodGold')">血月魔尊</button>
+        <button class="preset-chip" onclick="setT6Preset('yixian','holdFlower','fullMoon','plumGarden','petalFlow','jadeGreen')">桃花医仙</button>
+        <button class="preset-chip" onclick="setT6Preset('qinMo','playMusic','starMap','snowMountain','starRibbon','snowSilver')">雪山琴魔</button>
+        <button class="preset-chip" onclick="setT6Preset('huyao','flyAscend','bloodMoon','starryField','petalFlow','bloodGold')">九尾狐妖</button>
+        <button class="preset-chip" onclick="setT6Preset('fozi','recitSutra','sanskritWheel','templeRuins','buddhaLight','inkGold')">藏经佛子</button>
+        <button class="preset-chip" onclick="setT6Preset('jianxian','rideBeast','voidVortex','cloudSea','lightning','moonCyan')">驭龙少年</button>
+        <button class="preset-chip" onclick="setT6Preset('xianzi','floatingPose','fullMoon','starryField','starRibbon','twilightPurple')">月华仙子</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t6Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">SUMMONING CHARACTER</div>
+      <div class="loading-steps">
+        <div class="step" id="t6s1">◈ 演算曼陀罗符文…</div>
+        <div class="step" id="t6s2">◈ 织造仙衣流光…</div>
+        <div class="step" id="t6s3">◈ 凝聚角色气韵…</div>
+        <div class="step" id="t6s4">◈ 成像完毕…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t6Output">
+      <div class="output-header">
+        <span class="output-title" id="t6OutputLabel">◉ CHARACTER READY</span>
+        <button class="copy-btn" onclick="copyT6()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT6Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT6Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT6Tab(2)">画面要素</div>
+        <div class="tab" onclick="switchT6Tab(3)">画面文字</div>
+        <div class="tab" onclick="switchT6Tab(4)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t6tab0">
+        <div class="prompt-block">
+          <div class="block-label">◈ English Prompt · Midjourney / Flux / SD</div>
+          <div class="prompt-text" id="t6EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t6tab1">
+        <div class="prompt-block">
+          <div class="block-label">◈ 中文提示词 · 可灵 / 即梦</div>
+          <div class="prompt-text" id="t6ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t6tab2">
+        <div class="block-label" style="margin-bottom:14px">◈ Visual Elements · 画面核心要素</div>
+        <div id="t6ElementsViz"></div>
+      </div>
+      <div class="tab-content" id="t6tab3">
+        <div class="block-label" style="margin-bottom:14px">◈ Typography · 画面文字建议</div>
+        <div id="t6CopyDeck"></div>
+      </div>
+      <div class="tab-content" id="t6tab4">
+        <div class="prompt-block">
+          <div class="block-label">◈ Usage Guide</div>
+          <div class="prompt-text" id="t6UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t6PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Tool modules · 按需加载 -->
 <script src="tools/hub.js"></script>
 <script src="tools/tool-1-crosssection.js"></script>
@@ -856,5 +1061,6 @@
 <script src="tools/tool-3-manifesto.js"></script>
 <script src="tools/tool-4-photography.js"></script>
 <script src="tools/tool-5-city.js"></script>
+<script src="tools/tool-6-xianxia.js"></script>
 </body>
 </html>
