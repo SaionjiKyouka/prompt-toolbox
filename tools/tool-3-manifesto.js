@@ -186,8 +186,10 @@ FOOTER|底部署名（如 你的AI伙伴 · 你的第二大脑）
 
     if (!enPrompt) { console.error('Raw:', rawText); throw new Error("解析失败"); }
 
-    document.getElementById('t3EnPrompt').textContent = enPrompt;
-    document.getElementById('t3ZhPrompt').textContent = zhPrompt || enPrompt;
+    const t3SigEn = (typeof window.getSignatureInstruction === 'function') ? window.getSignatureInstruction() : '';
+    const t3SigZh = (typeof window.getSignatureInstructionZh === 'function') ? window.getSignatureInstructionZh() : '';
+    document.getElementById('t3EnPrompt').textContent = enPrompt + t3SigEn;
+    document.getElementById('t3ZhPrompt').textContent = (zhPrompt || enPrompt) + (zhPrompt ? t3SigZh : t3SigEn);
     document.getElementById('t3UsageGuide').textContent = usage;
     document.getElementById('t3PlatformNote').innerHTML = `<strong>▸ PLATFORM PARAMETERS</strong>${platform.replace(/\n/g, '<br>')}`;
     document.getElementById('t3OutputLabel').textContent = `▸ ${product.toUpperCase()} · MANIFESTO`;

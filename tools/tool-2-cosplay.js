@@ -129,8 +129,10 @@ STYLE: ${comp}, movie poster composition, editorial magazine quality, ultra-deta
 
     if (!enPrompt) { console.error('Raw:', rawText); throw new Error("解析失败"); }
 
-    document.getElementById('t2EnPrompt').textContent = enPrompt;
-    document.getElementById('t2ZhPrompt').textContent = zhPrompt || enPrompt;
+    const t2SigEn = (typeof window.getSignatureInstruction === 'function') ? window.getSignatureInstruction() : '';
+    const t2SigZh = (typeof window.getSignatureInstructionZh === 'function') ? window.getSignatureInstructionZh() : '';
+    document.getElementById('t2EnPrompt').textContent = enPrompt + t2SigEn;
+    document.getElementById('t2ZhPrompt').textContent = (zhPrompt || enPrompt) + (zhPrompt ? t2SigZh : t2SigEn);
     document.getElementById('t2UsageGuide').textContent = usage;
     document.getElementById('t2PlatformNote').innerHTML = `<strong>◆ PLATFORM PARAMETERS</strong>${platform.replace(/\n/g, '<br>')}`;
     document.getElementById('t2OutputLabel').textContent = `✦ ${char.toUpperCase()} · ${mood.name.toUpperCase()}`;

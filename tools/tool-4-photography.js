@@ -258,8 +258,10 @@ Grading LUT|（推荐一个LUT名字如 Kodak 2383）
 
     if (!enPrompt) { console.error('Raw:', rawText); throw new Error("解析失败"); }
 
-    document.getElementById('t4EnPrompt').textContent = enPrompt;
-    document.getElementById('t4ZhPrompt').textContent = zhPrompt || enPrompt;
+    const t4SigEn = (typeof window.getSignatureInstruction === 'function') ? window.getSignatureInstruction() : '';
+    const t4SigZh = (typeof window.getSignatureInstructionZh === 'function') ? window.getSignatureInstructionZh() : '';
+    document.getElementById('t4EnPrompt').textContent = enPrompt + t4SigEn;
+    document.getElementById('t4ZhPrompt').textContent = (zhPrompt || enPrompt) + (zhPrompt ? t4SigZh : t4SigEn);
     document.getElementById('t4UsageGuide').textContent = usage;
     document.getElementById('t4PlatformNote').innerHTML = `<strong>◉ PLATFORM PARAMETERS</strong>${platform.replace(/\n/g, '<br>')}`;
     document.getElementById('t4OutputLabel').textContent = `◉ ${filmDisplay.split('（')[0].toUpperCase()} · ${cameraDisplay.split('（')[0].toUpperCase()}`;

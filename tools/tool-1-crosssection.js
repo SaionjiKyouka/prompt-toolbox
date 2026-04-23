@@ -116,8 +116,10 @@ async function generateTool1() {
       return { depth: parts[0] || '', name: parts[1] || '', desc: parts[2] || '', color: parts[3] || '#3b82f6' };
     });
 
-    document.getElementById('t1EnPrompt').textContent = enPrompt;
-    document.getElementById('t1ZhPrompt').textContent = zhPrompt || enPrompt;
+    const t1SigEn = (typeof window.getSignatureInstruction === 'function') ? window.getSignatureInstruction() : '';
+    const t1SigZh = (typeof window.getSignatureInstructionZh === 'function') ? window.getSignatureInstructionZh() : '';
+    document.getElementById('t1EnPrompt').textContent = enPrompt + t1SigEn;
+    document.getElementById('t1ZhPrompt').textContent = (zhPrompt || enPrompt) + (zhPrompt ? t1SigZh : t1SigEn);
     document.getElementById('t1UsageGuide').textContent = usage;
     document.getElementById('t1UsageNote').innerHTML = `<strong>平台参数建议：</strong><br>${platform.replace(/\n/g, '<br>')}`;
     document.getElementById('t1OutputLabel').textContent = `// OUTPUT: ${topic.toUpperCase()}`;

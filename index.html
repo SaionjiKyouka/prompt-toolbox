@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="styles/tool-2.css">
 <link rel="stylesheet" href="styles/tool-3.css">
 <link rel="stylesheet" href="styles/tool-4.css">
+<link rel="stylesheet" href="styles/tool-5.css">
 </head>
 <body>
 
@@ -30,6 +31,11 @@
     <div class="tools-section-label">Available Tools · 可用工具</div>
     <div class="tools-grid" id="toolsGrid">
       <!-- Tools injected by hub.js -->
+    </div>
+
+    <div class="tools-section-label" style="margin-top:48px">Settings · 全局设置</div>
+    <div class="signature-panel" id="signaturePanel">
+      <!-- Signature settings injected by hub.js -->
     </div>
   </div>
 
@@ -636,11 +642,219 @@
   </div>
 </div>
 
+<!-- TOOL 5 · City Landmark Poster -->
+<div class="tool-screen tool-screen-5" id="tool5">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="header-seal">印</div>
+    <div class="header-badge">City Soul Poster Engine</div>
+    <h1>城市<span class="accent">地标</span><span class="gold">海报</span><br>提示词生成器</h1>
+    <p class="subtitle">City Landmark Art Poster · 中国城市灵魂</p>
+    <p class="tagline">— 把一座城的灵魂凝固在一张海报里 —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">City Configuration · 城市配置</div>
+
+      <div class="input-row">
+        <input class="city-input" id="t5CityInput" type="text" placeholder="输入城市名，如：广州、深圳、成都、重庆…" />
+        <button class="generate-btn" id="t5GenBtn" onclick="generateTool5()">铸 海 报</button>
+      </div>
+
+      <div class="optional-inputs">
+        <input id="t5DateInput" type="text" placeholder="日期/副标题（可选，如 2026/04/20 或 Spring 2026）" />
+        <input id="t5SignInput" type="text" placeholder="署名（可选，如 Saionji）" />
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>Visual Style · 视觉风格</label>
+          <select id="t5StyleSelect">
+            <option value="goldenight">🌃 夜色金线（广州图风格）</option>
+            <option value="guofeng">🎋 国风工笔（深圳图风格）</option>
+            <option value="inkwash">🖌️ 水墨写意（极简禅意）</option>
+            <option value="cyberneon">⚡ 赛博霓虹（未来都市）</option>
+            <option value="vintagemg">📜 复古民国（老上海）</option>
+            <option value="ukiyoe">🗾 浮世绘（东方版画）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>Figure · 人物锚点</label>
+          <select id="t5PersonSelect">
+            <option value="whitehairgirl">👧 白发少女（执花束）</option>
+            <option value="redrobedancer">💃 红衣舞者（执红绸）</option>
+            <option value="qipaolady">👘 旗袍女子</option>
+            <option value="operaface">🎭 戏曲人物</option>
+            <option value="hanfuscholar">📖 汉服书生</option>
+            <option value="modernboy">🧍 现代少年</option>
+            <option value="noperson">◻️ 无人物（纯城景）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>Flow Element · 流动元素</label>
+          <select id="t5FlowSelect">
+            <option value="goldenriver">✨ 金色光带（江河）</option>
+            <option value="redsilk">🎀 红绸飘舞</option>
+            <option value="cloudmist">☁️ 祥云雾气</option>
+            <option value="starstream">🌌 星河银带</option>
+            <option value="flowerpetals">🌸 花瓣飘落</option>
+            <option value="brushstroke">🖋 书法笔触</option>
+            <option value="none">❌ 无流动元素</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>Typography · 文字排版</label>
+          <select id="t5TypoSelect">
+            <option value="minimal">◻️ 宋体极简</option>
+            <option value="brushcalli">🖌 毛笔书法+印章</option>
+            <option value="sealstamp">🔴 衬线+红印章</option>
+            <option value="neonglow">💫 霓虹发光字</option>
+            <option value="vintage">📰 民国复古体</option>
+            <option value="woodblock">🗿 木版印刷体</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group" style="grid-column: 1 / -1;">
+          <label>Composition Density · 构图密度（★ 关键：控制画面留白）</label>
+          <select id="t5DensitySelect">
+            <option value="balanced">⚖️ 平衡聚焦（推荐 · 50% 留白，主次分明）</option>
+            <option value="airy">🌬️ 极简留白（70% 留白 · 东方美学精髓）</option>
+            <option value="rich">🎨 丰富饱满（30% 留白 · 地标环绕）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◈ Composition · 构图轨迹</label>
+          <select id="t5CompSelect">
+            <option value="sShape">〰️ S型流动（视线游走·最常用）</option>
+            <option value="diagonal">↗️ 对角线（强方向感）</option>
+            <option value="golden">🌀 黄金螺旋（艺术高级）</option>
+            <option value="horizontal">⎯ 水平分割（上下两段）</option>
+            <option value="triangular">▲ 三角稳定（庄严纪念）</option>
+            <option value="offCenter">◧ 偏心聚焦（一侧3/1处）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◈ Background · 背景处理</label>
+          <select id="t5BgSelect">
+            <option value="gradientGlow">🌅 渐变光晕（深到亮·推荐）</option>
+            <option value="stardust">✨ 星尘颗粒（深黑+暗红·广州风）</option>
+            <option value="pureWhite">◻️ 纯净宣纸（极简禅意）</option>
+            <option value="cloudmist">☁️ 云雾朦胧（山水画感）</option>
+            <option value="texturePaper">📜 质感底纹（古籍绢布）</option>
+            <option value="cosmicStarry">🌌 宇宙星空（史诗感）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◈ Render · 渲染技法</label>
+          <select id="t5RenderSelect">
+            <option value="hybrid">🎭 线描+工笔+淡彩（高级混合）</option>
+            <option value="lineGlow">💡 精细线描+发光体块（赛博感）</option>
+            <option value="watercolor">🎨 水彩工笔（玉环图那种）</option>
+            <option value="inkWash">🖌️ 水墨晕染（纯粹东方）</option>
+            <option value="oilPaint">🖼️ 油画厚涂（西方油彩）</option>
+            <option value="digitalFlat">▭ 数字扁平（现代插画）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◈ Lighting · 光影层级</label>
+          <select id="t5LightSelect">
+            <option value="rim">🌟 轮廓光（边缘金/红光勾勒）</option>
+            <option value="dramatic">🎭 戏剧对比（强烈明暗）</option>
+            <option value="volumetric">☀️ 体积光束（丁达尔神性）</option>
+            <option value="particle">✨ 粒子散射（梦幻金点）</option>
+            <option value="gentle">💭 柔和均匀（日系温柔）</option>
+            <option value="moonlit">🌙 月光冷调（清冷神秘）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT5Preset('广州','goldenight','whitehairgirl','goldenriver')">广州金色星尘</button>
+        <button class="preset-chip" onclick="setT5Preset('玉环','guofeng','redrobedancer','redsilk')">玉环山海</button>
+        <button class="preset-chip" onclick="setT5Preset('深圳','guofeng','redrobedancer','redsilk')">深圳春日</button>
+        <button class="preset-chip" onclick="setT5Preset('上海','vintagemg','qipaolady','cloudmist')">老上海</button>
+        <button class="preset-chip" onclick="setT5Preset('北京','inkwash','hanfuscholar','brushstroke')">北京水墨</button>
+        <button class="preset-chip" onclick="setT5Preset('成都','guofeng','modernboy','cloudmist')">成都闲适</button>
+        <button class="preset-chip" onclick="setT5Preset('重庆','cyberneon','modernboy','starstream')">重庆赛博</button>
+        <button class="preset-chip" onclick="setT5Preset('西安','inkwash','hanfuscholar','cloudmist')">西安古都</button>
+        <button class="preset-chip" onclick="setT5Preset('香港','cyberneon','noperson','starstream')">香港霓虹</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t5Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">CRAFTING POSTER</div>
+      <div class="loading-steps">
+        <div class="step" id="t5s1">◈ 查询城市地标数据…</div>
+        <div class="step" id="t5s2">◈ 构建艺术构图…</div>
+        <div class="step" id="t5s3">◈ 撰写文字排版…</div>
+        <div class="step" id="t5s4">◈ 铸造完成…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t5Output">
+      <div class="output-header">
+        <span class="output-title" id="t5OutputLabel">◈ POSTER READY</span>
+        <button class="copy-btn" onclick="copyT5()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT5Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT5Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT5Tab(2)">城市地标</div>
+        <div class="tab" onclick="switchT5Tab(3)">画面文字</div>
+        <div class="tab" onclick="switchT5Tab(4)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t5tab0">
+        <div class="prompt-block">
+          <div class="block-label">◈ English Prompt · Midjourney / Flux / SD</div>
+          <div class="prompt-text" id="t5EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t5tab1">
+        <div class="prompt-block">
+          <div class="block-label">◈ 中文提示词 · 可灵 / 即梦</div>
+          <div class="prompt-text" id="t5ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t5tab2">
+        <div class="block-label" style="margin-bottom:14px">◈ City Landmarks · 城市地标清单</div>
+        <div id="t5LandmarksViz"></div>
+      </div>
+      <div class="tab-content" id="t5tab3">
+        <div class="block-label" style="margin-bottom:14px">◈ Typography · 画面文字建议</div>
+        <div id="t5CopyDeck"></div>
+      </div>
+      <div class="tab-content" id="t5tab4">
+        <div class="prompt-block">
+          <div class="block-label">◈ Usage Guide</div>
+          <div class="prompt-text" id="t5UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t5PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Tool modules · 按需加载 -->
 <script src="tools/hub.js"></script>
 <script src="tools/tool-1-crosssection.js"></script>
 <script src="tools/tool-2-cosplay.js"></script>
 <script src="tools/tool-3-manifesto.js"></script>
 <script src="tools/tool-4-photography.js"></script>
+<script src="tools/tool-5-city.js"></script>
 </body>
 </html>

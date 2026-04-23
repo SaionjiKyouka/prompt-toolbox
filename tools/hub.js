@@ -46,6 +46,17 @@ const TOOLS = [
     tags: ['胶片美学', '人像摄影', '专业级'],
     accent: '#f4c896',
     status: 'active'
+  },
+  {
+    id: 'tool5',
+    number: '05',
+    icon: '🏯',
+    title: '城市地标海报',
+    en: 'City Landmark Poster',
+    desc: '生成中国城市艺术海报。内置 15+ 城市真实地标数据库（广州/深圳/上海/北京等），自动识别标志性建筑。支持夜色金线/国风工笔/水墨写意/赛博霓虹等 6 种风格。',
+    tags: ['城市文化', '中国风', '艺术海报'],
+    accent: '#d4351c',
+    status: 'active'
   }
 ];
 
@@ -105,5 +116,86 @@ function goHome() {
   window.scrollTo(0, 0);
 }
 
+// ============================================
+// GLOBAL SIGNATURE · 全局签名管理器
+// ============================================
+// 所有工具都可以调用 getSignatureInstruction() 获取当前签名指令，
+// 并拼接到自己的 prompt 末尾。默认启用 "LHJ"。
+const SIG_STORAGE_KEY = 'prompt-toolbox-signature';
+
+function loadSignatureSettings() {
+  try {
+    const raw = localStorage.getItem(SIG_STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return { enabled: true, text: 'LHJ' };  // 默认值
+}
+
+function saveSignatureSettings(settings) {
+  try {
+    localStorage.setItem(SIG_STORAGE_KEY, JSON.stringify(settings));
+  } catch(e) {}
+}
+
+// 全局 API — 所有工具都用这个函数获取签名指令
+// 会被拼接到 AI 生成的 prompt 后面
+window.getSignatureInstruction = function() {
+  const s = loadSignatureSettings();
+  if (!s.enabled || !s.text || !s.text.trim()) return '';
+  const text = s.text.trim();
+  return ` Additionally, at the bottom-right corner of the image, add a small handwritten signature "${text}" in a natural handwritten script style, using a subtle ink or pen tone that complements the image's color palette (darker than the background, semi-transparent). The signature should look like a real artist's personal mark — unobtrusive but visible, positioned inside the image frame margin, rendered as genuine handwriting not digital typography.`;
+};
+
+// 中文版签名指令（给中文 prompt 用）
+window.getSignatureInstructionZh = function() {
+  const s = loadSignatureSettings();
+  if (!s.enabled || !s.text || !s.text.trim()) return '';
+  const text = s.text.trim();
+  return `另外，在图片右下角添加一个小巧的手写签名"${text}"，采用自然的手写字体风格，用与画面色调协调的墨色或笔色（比背景稍深、半透明），看起来像真实艺术家的亲笔落款——低调但可见，位于画面内右下角边距位置，是真实手写笔迹而非数字字体。`;
+};
+
+function renderSignaturePanel() {
+  const panel = document.getElementById('signaturePanel');
+  if (!panel) return;
+  const s = loadSignatureSettings();
+  panel.innerHTML = `
+    <div class="sig-header">
+      <div class="sig-title">◈ Global Signature · 全局签名</div>
+      <label class="sig-toggle">
+        <input type="checkbox" id="sigEnabled" ${s.enabled ? 'checked' : ''}>
+        <span class="sig-switch"></span>
+        <span class="sig-label-text">${s.enabled ? 'Enabled' : 'Disabled'}</span>
+      </label>
+    </div>
+    <div class="sig-body ${s.enabled ? '' : 'sig-disabled'}">
+      <div class="sig-input-row">
+        <label class="sig-input-label">Signature Text:</label>
+        <input type="text" id="sigText" value="${s.text}" placeholder="LHJ" maxlength="20">
+      </div>
+      <div class="sig-preview">
+        <span class="sig-preview-label">Preview:</span>
+        <span class="sig-preview-text" id="sigPreview" style="font-family:'Caveat','Dancing Script',cursive">${s.text || 'LHJ'}</span>
+      </div>
+      <div class="sig-desc">生成的海报会在右下角自动添加手写签名落款</div>
+    </div>
+  `;
+
+  // Bind events
+  document.getElementById('sigEnabled').addEventListener('change', e => {
+    const s = loadSignatureSettings();
+    s.enabled = e.target.checked;
+    saveSignatureSettings(s);
+    renderSignaturePanel();
+  });
+
+  document.getElementById('sigText').addEventListener('input', e => {
+    const s = loadSignatureSettings();
+    s.text = e.target.value;
+    saveSignatureSettings(s);
+    document.getElementById('sigPreview').textContent = e.target.value || 'LHJ';
+  });
+}
+
 renderTools();
+renderSignaturePanel();
 

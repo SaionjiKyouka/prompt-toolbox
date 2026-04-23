@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600;700&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -380,3 +380,180 @@
   .tool-screen.active { display: block; }
 
   /* ============================================
+     GLOBAL SIGNATURE PANEL · 签名设置卡
+     ============================================ */
+  .signature-panel {
+    background: var(--hub-surface);
+    border: 1px solid var(--hub-border);
+    padding: 28px;
+    position: relative;
+  }
+
+  .signature-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--hub-accent), transparent);
+  }
+
+  .sig-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--hub-border);
+  }
+
+  .sig-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--hub-accent);
+    text-transform: uppercase;
+  }
+
+  .sig-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .sig-toggle input[type="checkbox"] {
+    display: none;
+  }
+
+  .sig-switch {
+    position: relative;
+    width: 44px;
+    height: 22px;
+    background: var(--hub-border);
+    border-radius: 100px;
+    transition: background 0.3s ease;
+  }
+
+  .sig-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: var(--hub-text);
+    border-radius: 50%;
+    transition: transform 0.3s ease, background 0.3s;
+  }
+
+  .sig-toggle input[type="checkbox"]:checked + .sig-switch {
+    background: var(--hub-accent);
+  }
+
+  .sig-toggle input[type="checkbox"]:checked + .sig-switch::after {
+    transform: translateX(22px);
+    background: #1a1509;
+  }
+
+  .sig-label-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--hub-muted);
+    letter-spacing: 1px;
+    min-width: 60px;
+  }
+
+  .sig-body.sig-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .sig-input-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .sig-input-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--hub-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    min-width: 100px;
+  }
+
+  .signature-panel input[type="text"] {
+    flex: 1;
+    background: var(--hub-bg);
+    border: 1px solid var(--hub-border);
+    color: var(--hub-text);
+    font-size: 14px;
+    font-family: 'Noto Sans SC', sans-serif;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    max-width: 280px;
+  }
+
+  .signature-panel input[type="text"]:focus {
+    border-color: var(--hub-accent);
+  }
+
+  .sig-preview {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--hub-bg);
+    border: 1px dashed var(--hub-border);
+    margin-bottom: 12px;
+  }
+
+  .sig-preview-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--hub-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    min-width: 100px;
+  }
+
+  .sig-preview-text {
+    font-family: 'Caveat', 'Dancing Script', 'Brush Script MT', cursive;
+    font-size: 28px;
+    color: var(--hub-accent);
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  .sig-desc {
+    font-size: 12px;
+    color: var(--hub-muted);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  @media (max-width: 640px) {
+    .sig-header {
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .sig-input-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .signature-panel input[type="text"] {
+      max-width: 100%;
+      width: 100%;
+    }
+    .sig-preview {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
