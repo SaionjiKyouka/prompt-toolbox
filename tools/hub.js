@@ -101,6 +101,17 @@ const TOOLS = [
     tags: ['穿越朋友圈', '整图 prompt', '严谨考证'],
     accent: '#6ab890',
     status: 'active'
+  },
+  {
+    id: 'tool10',
+    number: '10',
+    icon: '◩',
+    title: '建筑信息图',
+    en: 'Architectural Infographic',
+    desc: '鸟巢同款博物馆级建筑信息图生成器——震撼实景主图 + 多视角技术制图 + 参数表 + 施工流程一体生成。7 种视觉基调（黑板/蓝图/古籍/博物馆/国家地理等）× 3 信息密度。',
+    tags: ['建筑信息图', '技术制图', '博物馆级'],
+    accent: '#7fb4f0',
+    status: 'active'
   }
 ];
 

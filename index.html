@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="styles/tool-7.css">
 <link rel="stylesheet" href="styles/tool-8.css">
 <link rel="stylesheet" href="styles/tool-9.css">
+<link rel="stylesheet" href="styles/tool-10.css">
 </head>
 <body>
 
@@ -1646,6 +1647,189 @@
   </div>
 </div>
 
+<!-- TOOL 10 · Architectural Infographic -->
+<div class="tool-screen tool-screen-10" id="tool10">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="compass-logo">◩</div>
+    <div class="header-badge">Architectural Infographic Engine</div>
+    <h1>建筑<span class="accent">信息图</span><span class="amber">生成器</span></h1>
+    <p class="subtitle">Museum-grade Architecture Poster</p>
+    <p class="tagline">— 鸟巢同款 · 实景 + 技术 + 数据 一次生成 —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">Architecture Configuration · 建筑配置</div>
+
+      <div class="input-row">
+        <input class="building-input" id="t10BuildingInput" type="text" placeholder="建筑名，如：故宫太和殿、埃菲尔铁塔、悉尼歌剧院、鸟巢…" />
+        <button class="generate-btn" id="t10GenBtn" onclick="generateTool10()">Generate</button>
+      </div>
+
+      <div class="optional-inputs">
+        <textarea id="t10ContextInput" rows="2" placeholder="自定义补充（可选，如：强调夜景灯光 / 突出某个结构特点 / 特定时期的风貌…）"></textarea>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◩ Style · 视觉基调</label>
+          <select id="t10StyleSelect">
+            <option value="darkBlackboard">🎨 暗色黑板（鸟巢同款·推荐）</option>
+            <option value="cyanBlueprint">📐 蓝图工程风</option>
+            <option value="parchment">📜 古籍羊皮纸</option>
+            <option value="museum">🏛️ 博物馆展板</option>
+            <option value="natGeo">📖 National Geographic</option>
+            <option value="minimalModern">⬜ 现代极简</option>
+            <option value="darkBrutal">🏗️ 暗黑混凝土</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◩ Hero Shot · 主图氛围</label>
+          <select id="t10HeroSelect">
+            <option value="sunset">🌅 黄昏实景（推荐）</option>
+            <option value="night">🌃 夜景灯光</option>
+            <option value="dawn">🌄 晨雾破晓</option>
+            <option value="clearDay">☀️ 晴空丽日</option>
+            <option value="inkPainting">🖌️ 水墨手绘</option>
+            <option value="renderCG">💻 CG 渲染</option>
+            <option value="historicalPhoto">📷 历史老照片</option>
+            <option value="aerialDrone">🛩️ 航拍俯视</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◩ Density · 信息密度</label>
+          <select id="t10DensitySelect">
+            <option value="full">📚 极致（12+ 模块·鸟巢级）</option>
+            <option value="standard">📄 标准（8 模块·推荐）</option>
+            <option value="minimal">🎯 极简（5 模块）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◩ Language · 语言</label>
+          <select id="t10LangSelect">
+            <option value="bilingual">🌐 中英双语（推荐）</option>
+            <option value="englishOnly">🇬🇧 纯英文</option>
+            <option value="chineseOnly">🇨🇳 纯中文</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◩ Culture · 建筑流派</label>
+          <select id="t10CultureSelect">
+            <option value="modernContemporary">🏙️ 现代当代</option>
+            <option value="chineseTraditional">🏯 中国传统</option>
+            <option value="westernClassical">🏛️ 西方古典</option>
+            <option value="japaneseTraditional">⛩️ 日本传统</option>
+            <option value="islamicArch">🕌 伊斯兰建筑</option>
+            <option value="industrial">🏗️ 工业建筑</option>
+            <option value="futuristic">🚀 未来科幻</option>
+            <option value="fantasy">🏰 奇幻虚构</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◩ Tech Depth · 技术图深度</label>
+          <select id="t10TechSelect">
+            <option value="withConstruction">🏗️ 全套+施工流程（推荐）</option>
+            <option value="fullTechnical">📐 全技术套图</option>
+            <option value="withPlanSection">📏 含平面剖面</option>
+            <option value="exteriorOnly">🏛️ 仅外观</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group" style="grid-column: 1 / -1;">
+          <label>◩ Brand Style · 品牌风格</label>
+          <select id="t10BrandSelect">
+            <option value="architectStudio">🏢 建筑事务所（推荐）</option>
+            <option value="engineeringDoc">⚙️ 工程师报告</option>
+            <option value="museumPanel">🏛️ 博物馆展板</option>
+            <option value="natGeoMag">📖 National Geographic</option>
+            <option value="heritageAtlas">📜 遗产档案</option>
+            <option value="concept">💡 设计概念</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT10Preset('鸟巢国家体育场 Beijing National Stadium','darkBlackboard','sunset','full','bilingual','modernContemporary','withConstruction','architectStudio')">🏟️ 鸟巢</button>
+        <button class="preset-chip" onclick="setT10Preset('故宫太和殿 Hall of Supreme Harmony','parchment','clearDay','full','bilingual','chineseTraditional','fullTechnical','heritageAtlas')">🏯 太和殿</button>
+        <button class="preset-chip" onclick="setT10Preset('埃菲尔铁塔 Eiffel Tower','cyanBlueprint','sunset','full','bilingual','industrial','withConstruction','engineeringDoc')">🗼 埃菲尔铁塔</button>
+        <button class="preset-chip" onclick="setT10Preset('悉尼歌剧院 Sydney Opera House','darkBlackboard','sunset','standard','bilingual','modernContemporary','fullTechnical','architectStudio')">🎭 悉尼歌剧院</button>
+        <button class="preset-chip" onclick="setT10Preset('金阁寺 Kinkaku-ji','museum','dawn','standard','bilingual','japaneseTraditional','withPlanSection','heritageAtlas')">⛩️ 金阁寺</button>
+        <button class="preset-chip" onclick="setT10Preset('泰姬陵 Taj Mahal','parchment','dawn','full','bilingual','islamicArch','fullTechnical','heritageAtlas')">🕌 泰姬陵</button>
+        <button class="preset-chip" onclick="setT10Preset('帕特农神庙 Parthenon','parchment','clearDay','standard','bilingual','westernClassical','withPlanSection','heritageAtlas')">🏛️ 帕特农</button>
+        <button class="preset-chip" onclick="setT10Preset('迪拜哈利法塔 Burj Khalifa','darkBrutal','night','full','bilingual','modernContemporary','withConstruction','engineeringDoc')">🏗️ 哈利法塔</button>
+        <button class="preset-chip" onclick="setT10Preset('苏州园林拙政园 Humble Administrator Garden','museum','dawn','standard','bilingual','chineseTraditional','withPlanSection','heritageAtlas')">🌿 拙政园</button>
+        <button class="preset-chip" onclick="setT10Preset('霍格沃茨魔法学校 Hogwarts','parchment','night','standard','bilingual','fantasy','fullTechnical','concept')">🏰 霍格沃茨</button>
+        <button class="preset-chip" onclick="setT10Preset('上海中心大厦 Shanghai Tower','cyanBlueprint','night','full','bilingual','modernContemporary','withConstruction','engineeringDoc')">🏙️ 上海中心</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t10Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">DRAFTING INFOGRAPHIC</div>
+      <div class="loading-steps">
+        <div class="step" id="t10s1">◩ 研究建筑数据…</div>
+        <div class="step" id="t10s2">◩ 规划版式结构…</div>
+        <div class="step" id="t10s3">◩ 生成技术制图…</div>
+        <div class="step" id="t10s4">◩ 信息图铸成…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t10Output">
+      <div class="output-header">
+        <span class="output-title" id="t10OutputLabel">◩ INFOGRAPHIC READY</span>
+        <button class="copy-btn" onclick="copyT10()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT10Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT10Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT10Tab(2)">模块清单</div>
+        <div class="tab" onclick="switchT10Tab(3)">建筑档案</div>
+        <div class="tab" onclick="switchT10Tab(4)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t10tab0">
+        <div class="prompt-block">
+          <div class="block-label">◩ English Prompt · GPT-4o / Nano Banana / Gemini / Flux</div>
+          <div class="prompt-text" id="t10EnPrompt">—</div>
+        </div>
+        <div class="info-note"><strong>◩ TIP · 一个 prompt 出一张整图</strong>把这段 prompt 直接粘贴给 GPT-4o / Nano Banana / Gemini 2.0 等支持文字+技术图一体生成的模型，会一次性输出完整的建筑信息图海报（含主图、技术制图、参数表、施工流程）。</div>
+      </div>
+      <div class="tab-content" id="t10tab1">
+        <div class="prompt-block">
+          <div class="block-label">◩ 中文 Prompt · 可灵 / 即梦</div>
+          <div class="prompt-text" id="t10ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t10tab2">
+        <div class="block-label" style="margin-bottom:14px">◩ Module List · 信息图包含的模块</div>
+        <div id="t10ModuleList" class="module-list"></div>
+      </div>
+      <div class="tab-content" id="t10tab3">
+        <div class="block-label" style="margin-bottom:14px">◩ Building Facts · 建筑真实档案</div>
+        <div id="t10Facts"></div>
+        <div class="info-note" style="margin-top:12px"><strong>◩ 说明</strong>AI 使用的真实建筑数据。你可以核对有无错误，如有错，复制时手动修正 prompt 里对应字段。</div>
+      </div>
+      <div class="tab-content" id="t10tab4">
+        <div class="prompt-block">
+          <div class="block-label">◩ Usage Guide</div>
+          <div class="prompt-text" id="t10UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t10PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Tool modules · 按需加载 -->
 <script src="tools/hub.js"></script>
 <script src="tools/tool-1-crosssection.js"></script>
@@ -1657,5 +1841,6 @@
 <script src="tools/tool-7-ipworld.js"></script>
 <script src="tools/tool-8-portrait.js"></script>
 <script src="tools/tool-9-moments.js"></script>
+<script src="tools/tool-10-infograph.js"></script>
 </body>
 </html>
