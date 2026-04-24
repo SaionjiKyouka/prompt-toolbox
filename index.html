@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="styles/tool-4.css">
 <link rel="stylesheet" href="styles/tool-5.css">
 <link rel="stylesheet" href="styles/tool-6.css">
+<link rel="stylesheet" href="styles/tool-7.css">
+<link rel="stylesheet" href="styles/tool-8.css">
+<link rel="stylesheet" href="styles/tool-9.css">
 </head>
 <body>
 
@@ -1054,6 +1057,595 @@
   </div>
 </div>
 
+<!-- TOOL 7 · IP Character Stylized Poster -->
+<div class="tool-screen tool-screen-7" id="tool7">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="wanted-stamp">IP × WORLD</div>
+    <div class="header-badge">Character Cross-Reality Poster Engine</div>
+    <h1>IP <span class="accent">角色</span><span class="gold">风格化</span>海报<br>提示词生成器</h1>
+    <p class="subtitle">Character × Worldview Crossover</p>
+    <p class="tagline">— 把角色塞进新世界，不丢灵魂 —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">Character Configuration · 角色配置</div>
+
+      <div class="input-row">
+        <input class="ip-input" id="t7IPInput" type="text" placeholder="IP 角色名，如：芙宁娜、雷电将军、Shalltear、艾斯…" />
+        <button class="generate-btn" id="t7GenBtn" onclick="generateTool7()">Generate</button>
+      </div>
+
+      <div class="optional-inputs">
+        <input id="t7SubtitleInput" type="text" placeholder="副标题/标语（可选，如：WANTED DEAD OR ALIVE）" />
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group" style="grid-column: 1 / -1;">
+          <label>◈ World · 世界观（★ 核心）</label>
+          <select id="t7WorldSelect">
+            <option value="western">🤠 西部荒野（RDR 官方海报气质）</option>
+            <option value="cyberpunk">🚀 赛博朋克（霓虹雨夜）</option>
+            <option value="steampunk">⚙️ 蒸汽朋克（维多利亚工业）</option>
+            <option value="republicanChina">🏮 民国谍影（老上海）</option>
+            <option value="gothicVictorian">🎭 哥特维多利亚（吸血鬼）</option>
+            <option value="documentary">📰 新闻纪实（黑白胶片）</option>
+            <option value="wuxia">⚔️ 武侠江湖（水墨剑客）</option>
+            <option value="sciFi">🛸 星际科幻（太空歌剧）</option>
+            <option value="darkFantasy">🗡️ 黑暗奇幻（中世纪巫术）</option>
+            <option value="circusFreakshow">🎪 怪诞马戏（Freak Show）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◈ Poster Type · 海报类型</label>
+          <select id="t7PosterSelect">
+            <option value="official">📯 官方宣传海报</option>
+            <option value="wanted">⚠️ 通缉令 Wanted</option>
+            <option value="magazine">📖 杂志封面</option>
+            <option value="movie">🎬 电影海报</option>
+            <option value="documentary">📸 纪实摄影</option>
+            <option value="tarot">🔮 塔罗牌</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◈ Mood · 气质</label>
+          <select id="t7MoodSelect">
+            <option value="cold">❄️ 冷艳危险</option>
+            <option value="lonely">🌑 孤寂忧郁</option>
+            <option value="noble">👑 优雅端正</option>
+            <option value="hero">⚔️ 英雄肃穆</option>
+            <option value="mysterious">🌫️ 神秘莫测</option>
+            <option value="seductive">🌹 诱惑危险</option>
+            <option value="mad">🃏 癫狂诡异</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>◈ Weathering · 做旧程度</label>
+          <select id="t7WeatherSelect">
+            <option value="standard">📜 标准做旧（推荐·RDR 海报感）</option>
+            <option value="light">🍃 轻微岁月感</option>
+            <option value="clean">✨ 无做旧（干净现代）</option>
+            <option value="heavy">💀 极度破损</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>◈ Typography · 文字排版</label>
+          <select id="t7TextSelect">
+            <option value="bigName">🔤 大字角色名（Shalltear 风格）</option>
+            <option value="wantedPoster">⚠️ 通缉令排版</option>
+            <option value="moviePoster">🎬 电影海报排版</option>
+            <option value="magazineCover">📖 杂志封面排版</option>
+            <option value="bilingual">🈳 中英双语</option>
+            <option value="minimalist">◻️ 极简（无文字）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group" style="grid-column: 1 / -1;">
+          <label>◈ IP Retention · IP 保留度（控制像原版还是像新角色）</label>
+          <select id="t7RetentionSelect">
+            <option value="strong">🔒 强（90% · 严格保留原版特征）</option>
+            <option value="medium">⚖️ 中（70% · 核心特征保留，允许世界化调整）</option>
+            <option value="weak">🔓 弱（50% · 只保留气质神韵，大胆重构）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT7Preset('Shalltear (Overlord)','western','official','cold','standard','bigName')">Shalltear 西部</button>
+        <button class="preset-chip" onclick="setT7Preset('芙宁娜(原神)','gothicVictorian','movie','noble','light','moviePoster')">芙宁娜哥特</button>
+        <button class="preset-chip" onclick="setT7Preset('雷电将军(原神)','cyberpunk','magazine','cold','clean','magazineCover')">雷电将军赛博</button>
+        <button class="preset-chip" onclick="setT7Preset('钟离(原神)','republicanChina','official','noble','standard','bilingual')">钟离民国</button>
+        <button class="preset-chip" onclick="setT7Preset('八重神子(原神)','steampunk','magazine','seductive','light','magazineCover')">八重神子蒸汽</button>
+        <button class="preset-chip" onclick="setT7Preset('枫原万叶(原神)','sciFi','official','noble','clean','bilingual')">万叶星际</button>
+        <button class="preset-chip" onclick="setT7Preset('纳西妲(原神)','wuxia','official','mysterious','light','bilingual')">纳西妲武侠</button>
+        <button class="preset-chip" onclick="setT7Preset('Dante(Devil May Cry)','western','wanted','cold','heavy','wantedPoster')">但丁通缉令</button>
+        <button class="preset-chip" onclick="setT7Preset('小丑 Joker','circusFreakshow','movie','mad','heavy','moviePoster')">小丑马戏</button>
+        <button class="preset-chip" onclick="setT7Preset('艾斯(海贼王)','darkFantasy','official','hero','standard','bigName')">艾斯黑暗奇幻</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t7Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">CROSSING REALITIES</div>
+      <div class="loading-steps">
+        <div class="step" id="t7s1">☠ 分析角色 DNA…</div>
+        <div class="step" id="t7s2">☠ 重构世界观服饰…</div>
+        <div class="step" id="t7s3">☠ 做旧印刷处理…</div>
+        <div class="step" id="t7s4">☠ 海报铸成…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t7Output">
+      <div class="output-header">
+        <span class="output-title" id="t7OutputLabel">☠ POSTER READY</span>
+        <button class="copy-btn" onclick="copyT7()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT7Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT7Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT7Tab(2)">角色 DNA</div>
+        <div class="tab" onclick="switchT7Tab(3)">画面文字</div>
+        <div class="tab" onclick="switchT7Tab(4)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t7tab0">
+        <div class="prompt-block">
+          <div class="block-label">◈ English Prompt · Midjourney / Flux / SD</div>
+          <div class="prompt-text" id="t7EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t7tab1">
+        <div class="prompt-block">
+          <div class="block-label">◈ 中文提示词 · 可灵 / 即梦</div>
+          <div class="prompt-text" id="t7ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t7tab2">
+        <div class="block-label" style="margin-bottom:14px">◈ Character DNA & World Elements</div>
+        <div id="t7ElementsViz"></div>
+      </div>
+      <div class="tab-content" id="t7tab3">
+        <div class="block-label" style="margin-bottom:14px">◈ Typography · 画面文字建议</div>
+        <div id="t7CopyDeck"></div>
+      </div>
+      <div class="tab-content" id="t7tab4">
+        <div class="prompt-block">
+          <div class="block-label">◈ Usage Guide</div>
+          <div class="prompt-text" id="t7UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t7PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL 8 · Oriental Fantasy Portrait -->
+<div class="tool-screen tool-screen-8" id="tool8">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="petal-logo">✦</div>
+    <div class="header-badge">Oriental Fantasy Portrait Engine</div>
+    <h1>东方<span class="accent">幻想</span><span class="peach">肖像</span><br>提示词生成器</h1>
+    <p class="subtitle">Cinematic Portrait · 东方气韵</p>
+    <p class="tagline">— 一张脸，一个瞬间，一个情绪 —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">Portrait Configuration · 肖像配置</div>
+
+      <div class="input-row">
+        <input class="portrait-input" id="t8CustomInput" type="text" placeholder="自定义补充（可选，如：雪白长发，泪痣，手持一朵红梅…）" />
+        <button class="generate-btn" id="t8GenBtn" onclick="generateTool8()">绘 · 像</button>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>人物类型 · Subject</label>
+          <select id="t8SubjectSelect">
+            <option value="goddess">🌸 神女（女·空灵）</option>
+            <option value="maiden">💮 少女（女·纯真）</option>
+            <option value="princess">👑 公主（女·高贵）</option>
+            <option value="ladyCourt">🏮 仕女（女·成熟）</option>
+            <option value="enchantress">🌹 妖姬（女·妖艳）</option>
+            <option value="nuWu">🕯️ 巫女（女·神秘）</option>
+            <option value="xianjun">⚜️ 仙君（男·清俊）</option>
+            <option value="swordsman">⚔️ 剑客（男·冷峻）</option>
+            <option value="scholar">📖 书生（男·温润）</option>
+            <option value="general">🛡️ 将军（男·沧桑）</option>
+            <option value="child">🎋 孩童（童·纯真）</option>
+            <option value="elder">🌿 老者（长·智慧）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>气质情绪 · Mood</label>
+          <select id="t8MoodSelect">
+            <option value="divine">✨ 空灵神性</option>
+            <option value="melancholy">🌧️ 忧郁凄美</option>
+            <option value="fierce">⚡ 英气凌厉</option>
+            <option value="tender">💗 温柔慈悲</option>
+            <option value="cold">❄️ 清冷孤傲</option>
+            <option value="seductive">🔥 妖艳魅惑</option>
+            <option value="pure">🕊️ 纯真烂漫</option>
+            <option value="wise">📿 沧桑智慧</option>
+            <option value="brooding">🌙 阴郁神秘</option>
+            <option value="joyful">☀️ 明媚喜悦</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>构图角度 · Angle</label>
+          <select id="t8AngleSelect">
+            <option value="lookBack">👀 回眸侧脸（经典）</option>
+            <option value="threeQuarter">⬛ 三分之一侧（推荐）</option>
+            <option value="frontGaze">👁️ 正面凝视</option>
+            <option value="downcast">⬇️ 低头沉思</option>
+            <option value="upward">⬆️ 仰望苍穹</option>
+            <option value="sideProfile">↩️ 纯侧脸</option>
+            <option value="closeup">🔍 近景特写</option>
+            <option value="bustShot">🖼️ 半身肖像</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>光影氛围 · Lighting</label>
+          <select id="t8LightSelect">
+            <option value="dawnBacklit">🌅 晨光逆光（推荐·梦幻）</option>
+            <option value="sunset">🌇 暮色温柔</option>
+            <option value="moonlight">🌙 月光冷调</option>
+            <option value="candlelight">🕯️ 烛光柔美</option>
+            <option value="morningMist">🌫️ 朝雾破晓</option>
+            <option value="starLight">🌌 深夜星光</option>
+            <option value="frostLight">❄️ 霜雪冷光</option>
+            <option value="dappledFlower">🌿 花影斑驳</option>
+            <option value="overcastSoft">☁️ 柔和阴天</option>
+            <option value="firelight">🔥 火光炽烈</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>发间装饰 · Hair Decor</label>
+          <select id="t8HairSelect">
+            <option value="colorfulFlowers">🌸 彩色花朵（推荐）</option>
+            <option value="goldParticles">✨ 金色光粒</option>
+            <option value="butterflies">🦋 彩蝶翩翩</option>
+            <option value="frostCrystals">❄️ 霜花冰晶</option>
+            <option value="featherTassels">🪶 羽毛流苏</option>
+            <option value="starJewels">💎 星辰宝石</option>
+            <option value="autumnLeaves">🍁 红叶飞落</option>
+            <option value="goldFoil">🌟 金箔碎片</option>
+            <option value="wildGrass">🌾 野草芦花</option>
+            <option value="paperTalisman">🧧 符纸红绳</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>服饰材质 · Costume</label>
+          <select id="t8CostumeSelect">
+            <option value="translucentSilk">🧵 半透明丝绸（推荐）</option>
+            <option value="gildedGauze">🌟 鎏金纱衣</option>
+            <option value="featherCape">🪶 羽毛披肩</option>
+            <option value="inkRobes">🖋️ 水墨长袍</option>
+            <option value="pearlGauze">🦪 鲛纱绡衣</option>
+            <option value="embroideredSatin">👘 绣花缎面</option>
+            <option value="silverBrocade">⚙️ 银线织锦</option>
+            <option value="plainLinen">🪢 素净麻衣</option>
+            <option value="armorPlated">🛡️ 鳞甲战衣</option>
+            <option value="scholarsCloak">📜 书生青衫</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>色调 · Tone</label>
+          <select id="t8ToneSelect">
+            <option value="warmGold">🌅 暖金橘粉（推荐·梦幻）</option>
+            <option value="moonCyan">🌙 月白青蓝</option>
+            <option value="blackGold">⚫ 黑金古雅</option>
+            <option value="sakuraPink">🌸 樱粉花白</option>
+            <option value="inkRed">🔴 墨黑朱红</option>
+            <option value="snowPurple">💜 雪白淡紫</option>
+            <option value="bloodGold">🩸 血红玄金</option>
+            <option value="celadonMist">🟢 青碧烟雾</option>
+            <option value="duskPurple">🌆 暮色紫金</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>背景处理 · Background</label>
+          <select id="t8BgSelect">
+            <option value="lightGradient">✨ 浅色渐变+粒子（推荐）</option>
+            <option value="blurredFlowers">🌸 虚化花林</option>
+            <option value="mistyClouds">☁️ 晨雾云海</option>
+            <option value="starrySky">🌌 星空宇宙</option>
+            <option value="oldPaper">📜 古纸肌理</option>
+            <option value="darkGradient">⚫ 深色渐变光晕</option>
+            <option value="flowerField">🌺 花田虚化</option>
+            <option value="waterRipple">💧 水纹莲池</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT8Preset('goddess','divine','lookBack','dawnBacklit','colorfulFlowers','translucentSilk','warmGold','lightGradient')">花神少女</button>
+        <button class="preset-chip" onclick="setT8Preset('princess','cold','threeQuarter','moonlight','starJewels','pearlGauze','moonCyan','starrySky')">月夜公主</button>
+        <button class="preset-chip" onclick="setT8Preset('enchantress','seductive','closeup','candlelight','autumnLeaves','embroideredSatin','bloodGold','darkGradient')">妖艳魅姬</button>
+        <button class="preset-chip" onclick="setT8Preset('xianjun','divine','sideProfile','dawnBacklit','goldParticles','gildedGauze','warmGold','mistyClouds')">神性仙君</button>
+        <button class="preset-chip" onclick="setT8Preset('swordsman','fierce','frontGaze','frostLight','featherTassels','silverBrocade','snowPurple','darkGradient')">冷冽剑客</button>
+        <button class="preset-chip" onclick="setT8Preset('scholar','brooding','downcast','candlelight','goldFoil','scholarsCloak','blackGold','oldPaper')">忧郁才子</button>
+        <button class="preset-chip" onclick="setT8Preset('nuWu','brooding','lookBack','starLight','paperTalisman','inkRobes','inkRed','darkGradient')">巫女祭司</button>
+        <button class="preset-chip" onclick="setT8Preset('maiden','joyful','bustShot','dappledFlower','butterflies','translucentSilk','sakuraPink','blurredFlowers')">春日少女</button>
+        <button class="preset-chip" onclick="setT8Preset('general','wise','threeQuarter','firelight','featherTassels','armorPlated','bloodGold','darkGradient')">沙场老将</button>
+        <button class="preset-chip" onclick="setT8Preset('elder','wise','closeup','overcastSoft','wildGrass','plainLinen','celadonMist','mistyClouds')">山林长者</button>
+        <button class="preset-chip" onclick="setT8Preset('child','pure','frontGaze','dappledFlower','butterflies','plainLinen','warmGold','blurredFlowers')">天真孩童</button>
+        <button class="preset-chip" onclick="setT8Preset('goddess','melancholy','downcast','morningMist','frostCrystals','pearlGauze','snowPurple','mistyClouds')">冰原仙子</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t8Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">PAINTING PORTRAIT</div>
+      <div class="loading-steps">
+        <div class="step" id="t8s1">✦ 凝神定韵…</div>
+        <div class="step" id="t8s2">✦ 勾勒五官…</div>
+        <div class="step" id="t8s3">✦ 织染光影…</div>
+        <div class="step" id="t8s4">✦ 像成…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t8Output">
+      <div class="output-header">
+        <span class="output-title" id="t8OutputLabel">✦ PORTRAIT READY</span>
+        <button class="copy-btn" onclick="copyT8()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT8Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT8Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT8Tab(2)">画面要素</div>
+        <div class="tab" onclick="switchT8Tab(3)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t8tab0">
+        <div class="prompt-block">
+          <div class="block-label">✦ English Prompt · Midjourney / Flux / SD</div>
+          <div class="prompt-text" id="t8EnPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t8tab1">
+        <div class="prompt-block">
+          <div class="block-label">✦ 中文提示词 · 可灵 / 即梦</div>
+          <div class="prompt-text" id="t8ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t8tab2">
+        <div class="block-label" style="margin-bottom:14px">✦ Core Elements · 画面核心要素</div>
+        <div id="t8ElementsViz"></div>
+      </div>
+      <div class="tab-content" id="t8tab3">
+        <div class="prompt-block">
+          <div class="block-label">✦ Usage Guide</div>
+          <div class="prompt-text" id="t8UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t8PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL 9 · Historical Moments -->
+<div class="tool-screen tool-screen-9" id="tool9">
+  <button class="back-btn" onclick="goHome()"><span class="back-btn-arrow">←</span> BACK</button>
+
+  <div class="header">
+    <div class="scroll-logo">📜</div>
+    <div class="header-badge">Historical Moments · 穿越朋友圈</div>
+    <h1>历史人物<span class="accent">朋友圈</span><br><span class="gold">穿越</span>内容生成器</h1>
+    <p class="subtitle">One Prompt · One Screenshot</p>
+    <p class="tagline">— 一个 prompt 出一张整图，历史严谨且 bug free —</p>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <div class="section-label">Character Configuration · 人物配置</div>
+
+      <div class="input-row">
+        <input class="person-input" id="t9PersonInput" type="text" placeholder="历史人物姓名，如：苏轼、李白、杜甫、李清照、唐伯虎…" />
+        <button class="generate-btn" id="t9GenBtn" onclick="generateTool9()">铸 · 图</button>
+      </div>
+
+      <div class="optional-inputs">
+        <textarea id="t9ContextInput" rows="2" placeholder="自定义补充（可选，如：刚吃完东坡肉 / 收到王安石的信 / 路过杭州…）"></textarea>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group" style="grid-column: 1 / -1;">
+          <label>世界观来源 · Universe（★ 关键：考证依据）</label>
+          <select id="t9UniverseSelect">
+            <option value="historical">📜 真实历史（苏轼/李白/杜甫等）</option>
+            <option value="shuihu">📖 《水浒传》（宋江/武松/林冲等）</option>
+            <option value="sanguo">📖 《三国演义》（诸葛亮/关羽/曹操等）</option>
+            <option value="hongloumeng">📖 《红楼梦》（贾宝玉/林黛玉等）</option>
+            <option value="xiyouji">📖 《西游记》（孙悟空/唐僧/太上老君）</option>
+            <option value="fengshen">📖 《封神演义》（哪吒/姜子牙/杨戬）</option>
+            <option value="liaozhai">📖 《聊斋志异》（聂小倩/画皮/婴宁）</option>
+            <option value="mythology">🏛️ 中国神话（嫦娥/玉帝/女娲）</option>
+            <option value="jinyong">🗡️ 金庸武侠（郭靖/令狐冲/乔峰）</option>
+            <option value="gulong">🗡️ 古龙武侠（楚留香/陆小凤/李寻欢）</option>
+            <option value="folk">🎨 民间传说（白娘子/梁祝/牛郎织女）</option>
+            <option value="other">🌐 其他作品（请在补充中说明）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>人生阶段 · Life Phase</label>
+          <select id="t9PhaseSelect">
+            <option value="exile">🌧️ 落魄/失意期（推荐）</option>
+            <option value="youth">🌱 少年意气</option>
+            <option value="rising">🌟 巅峰得意</option>
+            <option value="retreat">🏞️ 晚年归隐</option>
+            <option value="imprison">🔒 牢狱/软禁</option>
+            <option value="journey">🛶 漂泊旅居</option>
+            <option value="mourning">💔 丧亲怀人</option>
+            <option value="triumph">🏆 刚获成就</option>
+            <option value="everyday">🌤️ 日常平淡</option>
+            <option value="ending">🌅 临终/大结局</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>事件场景 · Event</label>
+          <select id="t9EventSelect">
+            <option value="writePoetry">📝 写诗作词</option>
+            <option value="beDemoted">📜 被贬抒怀</option>
+            <option value="banquet">🍷 诗会雅集</option>
+            <option value="missSomeone">💌 怀人思友</option>
+            <option value="climbMount">⛰️ 登山访古</option>
+            <option value="moonView">🌙 月下独酌</option>
+            <option value="drinkWine">🍶 借酒浇愁</option>
+            <option value="zenMoment">🧘 参禅悟道</option>
+            <option value="dailyLife">🍵 日常琐事</option>
+            <option value="argueDebate">⚔️ 争论冲突</option>
+            <option value="reviewLife">📖 人生感慨</option>
+            <option value="celebrateFood">🥟 分享美食</option>
+            <option value="springOuting">🌸 春游踏青</option>
+            <option value="sickBed">🛏️ 病中抒怀</option>
+            <option value="sendOff">👋 送别离别</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>配图风格 · Image Style</label>
+          <select id="t9ImgStyleSelect">
+            <option value="realisticPhoto">📸 摄影纪实（逼真推荐）</option>
+            <option value="songPainting">🖼️ 宋画工笔</option>
+            <option value="tangSilk">🏛️ 唐绢重彩</option>
+            <option value="mingQingInk">🖌️ 明清水墨</option>
+            <option value="vintageRepub">📷 民国老照片</option>
+            <option value="illustStyle">🎨 国风插画</option>
+            <option value="comicManga">💭 漫画风</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>UI 平台 · Platform</label>
+          <select id="t9UISelect">
+            <option value="wechat">💬 微信朋友圈（推荐）</option>
+            <option value="xiaohongshu">📕 小红书</option>
+            <option value="weibo">📢 微博</option>
+            <option value="douyin">🎵 抖音</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-group">
+          <label>梗风格 · Meme Style</label>
+          <select id="t9MemeSelect">
+            <option value="lightMeme">🪶 轻度玩梗（推荐·UI 恶搞）</option>
+            <option value="purePast">📜 纯古风（内容完全古代）</option>
+            <option value="mediumMeme">🎭 中度玩梗（主角略现代）</option>
+            <option value="heavyMeme">🤪 重度现代化（网络语）</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>互动深度 · Interaction</label>
+          <select id="t9InteractionSelect">
+            <option value="light">💬 3-5 条评论（推荐）</option>
+            <option value="rich">🗣️ 10+ 丰富互动</option>
+            <option value="none">🔇 仅发帖</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="presets">
+        <span class="presets-label">TEMPLATES · </span>
+        <button class="preset-chip" onclick="setT9Preset('苏轼','historical','exile','celebrateFood','realisticPhoto','wechat','lightMeme','light')">苏轼黄州美食</button>
+        <button class="preset-chip" onclick="setT9Preset('李白','historical','rising','drinkWine','tangSilk','wechat','lightMeme','rich')">李白醉饮长安</button>
+        <button class="preset-chip" onclick="setT9Preset('杜甫','historical','exile','dailyLife','realisticPhoto','wechat','mediumMeme','light')">杜甫茅屋为秋风所破</button>
+        <button class="preset-chip" onclick="setT9Preset('李清照','historical','mourning','missSomeone','songPainting','wechat','purePast','light')">李清照怀夫</button>
+        <button class="preset-chip" onclick="setT9Preset('陆游','historical','ending','missSomeone','mingQingInk','wechat','purePast','rich')">陆游临终示儿</button>
+        <button class="preset-chip" onclick="setT9Preset('唐伯虎','historical','everyday','writePoetry','realisticPhoto','xiaohongshu','mediumMeme','rich')">唐伯虎小红书</button>
+        <button class="preset-chip" onclick="setT9Preset('王维','historical','retreat','zenMoment','mingQingInk','wechat','purePast','light')">王维辋川归隐</button>
+        <button class="preset-chip" onclick="setT9Preset('辛弃疾','historical','exile','drinkWine','realisticPhoto','wechat','lightMeme','rich')">辛弃疾醉里挑灯</button>
+        <button class="preset-chip" onclick="setT9Preset('屈原','historical','mourning','reviewLife','mingQingInk','wechat','purePast','light')">屈原汨罗前夕</button>
+        <button class="preset-chip" onclick="setT9Preset('孙悟空','xiyouji','rising','argueDebate','realisticPhoto','wechat','mediumMeme','rich')">孙悟空大闹天宫</button>
+        <button class="preset-chip" onclick="setT9Preset('宋江','shuihu','triumph','banquet','realisticPhoto','wechat','lightMeme','rich')">宋江梁山聚义</button>
+        <button class="preset-chip" onclick="setT9Preset('诸葛亮','sanguo','rising','reviewLife','tangSilk','wechat','purePast','light')">诸葛亮六出祁山</button>
+        <button class="preset-chip" onclick="setT9Preset('贾宝玉','hongloumeng','mourning','missSomeone','mingQingInk','wechat','purePast','rich')">贾宝玉黛玉逝后</button>
+        <button class="preset-chip" onclick="setT9Preset('哪吒','fengshen','youth','argueDebate','tangSilk','wechat','mediumMeme','rich')">哪吒闹海</button>
+        <button class="preset-chip" onclick="setT9Preset('嫦娥','mythology','mourning','moonView','mingQingInk','wechat','purePast','light')">嫦娥奔月后</button>
+        <button class="preset-chip" onclick="setT9Preset('白娘子','folk','mourning','missSomeone','illustStyle','xiaohongshu','purePast','rich')">白娘子端午现形</button>
+        <button class="preset-chip" onclick="setT9Preset('令狐冲','jinyong','journey','drinkWine','realisticPhoto','wechat','mediumMeme','rich')">令狐冲笑傲江湖</button>
+        <button class="preset-chip" onclick="setT9Preset('聂小倩','liaozhai','mourning','missSomeone','illustStyle','wechat','purePast','light')">聂小倩兰若寺</button>
+      </div>
+    </div>
+
+    <div class="loading" id="t9Loading">
+      <div class="spinner"></div>
+      <div class="loading-text">VERIFYING HISTORY</div>
+      <div class="loading-steps">
+        <div class="step" id="t9s1">◎ 考证时间线…</div>
+        <div class="step" id="t9s2">◎ 筛选可互动人物…</div>
+        <div class="step" id="t9s3">◎ 编织评论互动…</div>
+        <div class="step" id="t9s4">◎ prompt 铸成…</div>
+      </div>
+    </div>
+
+    <div class="output-section" id="t9Output">
+      <div class="output-header">
+        <span class="output-title" id="t9OutputLabel">◎ MOMENTS READY</span>
+        <button class="copy-btn" onclick="copyT9()">Copy All</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchT9Tab(0)">EN Prompt</div>
+        <div class="tab" onclick="switchT9Tab(1)">中文版</div>
+        <div class="tab" onclick="switchT9Tab(2)">考证备注</div>
+        <div class="tab" onclick="switchT9Tab(3)">使用指南</div>
+      </div>
+      <div class="tab-content active" id="t9tab0">
+        <div class="prompt-block">
+          <div class="block-label">◎ English Prompt · GPT-4o / Nano Banana / Gemini / Flux</div>
+          <div class="prompt-text" id="t9EnPrompt">—</div>
+        </div>
+        <div class="info-note"><strong>◎ TIP · 一个 prompt 出一张整图</strong>把这段 prompt 直接粘贴到 GPT-4o / Nano Banana / Gemini 2.0 等支持文字+UI 一体生成的模型，会一次性输出完整的朋友圈截图（含 UI、状态栏、人物配图、文案、评论）。</div>
+      </div>
+      <div class="tab-content" id="t9tab1">
+        <div class="prompt-block">
+          <div class="block-label">◎ 中文 Prompt · 可灵 / 即梦</div>
+          <div class="prompt-text" id="t9ZhPrompt">—</div>
+        </div>
+      </div>
+      <div class="tab-content" id="t9tab2">
+        <div class="block-label" style="margin-bottom:14px">◎ 考证透明度报告 · Fact Check</div>
+        <div id="t9FactCheck"></div>
+        <div class="info-note" style="margin-top:12px"><strong>◎ 说明</strong>考证结果已经固化在 prompt 的具体文字里（评论人姓名/日期/地名等），这里只是给你看的"透明度报告"，证明 AI 确实做了历史核查。</div>
+      </div>
+      <div class="tab-content" id="t9tab3">
+        <div class="prompt-block">
+          <div class="block-label">◎ Usage Guide</div>
+          <div class="prompt-text" id="t9UsageGuide">—</div>
+        </div>
+        <div class="info-note" id="t9PlatformNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Tool modules · 按需加载 -->
 <script src="tools/hub.js"></script>
 <script src="tools/tool-1-crosssection.js"></script>
@@ -1062,5 +1654,8 @@
 <script src="tools/tool-4-photography.js"></script>
 <script src="tools/tool-5-city.js"></script>
 <script src="tools/tool-6-xianxia.js"></script>
+<script src="tools/tool-7-ipworld.js"></script>
+<script src="tools/tool-8-portrait.js"></script>
+<script src="tools/tool-9-moments.js"></script>
 </body>
 </html>

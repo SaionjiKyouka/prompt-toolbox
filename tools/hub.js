@@ -68,6 +68,39 @@ const TOOLS = [
     tags: ['仙侠', '角色肖像', '月光氛围'],
     accent: '#d8e4ff',
     status: 'active'
+  },
+  {
+    id: 'tool7',
+    number: '07',
+    icon: '☠',
+    title: 'IP 角色风格化海报',
+    en: 'IP Character Stylized Poster',
+    desc: '把任意 IP 角色（动漫/游戏/小说）迁移到完全不同的世界观。内置 10 种世界观（西部/赛博/蒸汽/民国/哥特/武侠/科幻等），自动分析角色 DNA 做保真迁移，避免 Cosplay 感。',
+    tags: ['IP 二创', '世界观迁移', '角色海报'],
+    accent: '#c41e1e',
+    status: 'active'
+  },
+  {
+    id: 'tool8',
+    number: '08',
+    icon: '✦',
+    title: '东方幻想肖像',
+    en: 'Oriental Fantasy Portrait',
+    desc: '电影级东方幻想人物肖像。不是海报不是角色设定图，是"一张脸一个瞬间一个情绪"的艺术肖像。12 人物类型（男女老少）× 10 气质 × 10 光影氛围 × 10 发饰 × 9 色调。',
+    tags: ['肖像画', '东方幻想', '电影光影'],
+    accent: '#f0c560',
+    status: 'active'
+  },
+  {
+    id: 'tool9',
+    number: '09',
+    icon: '◎',
+    title: '历史人物朋友圈',
+    en: 'Historical Moments',
+    desc: '一个 prompt 出一张整图——直接粘贴给 GPT-4o/Nano Banana 就能生成完整的朋友圈截图（UI+人物+文案+评论一体）。12 种世界观（历史/水浒/三国/红楼/西游/封神/聊斋/神话/武侠/民间）自动考证。',
+    tags: ['穿越朋友圈', '整图 prompt', '严谨考证'],
+    accent: '#6ab890',
+    status: 'active'
   }
 ];
 
